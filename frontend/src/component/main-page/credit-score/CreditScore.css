@@ -1,0 +1,18 @@
+.credit_score_main {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 213px;
+    max-width: 337px;
+    max-height: 171px;
+    background-color: #fff;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(139, 139, 139, 0.2);
+}
+.credit_score_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}

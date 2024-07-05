@@ -1,0 +1,46 @@
+.toggle-container {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin: 25px auto;
+  }
+  
+  .toggle-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    font-size: 0.8rem;
+    vertical-align: middle;
+    font-weight: 500;
+  }
+  
+  .toggle-button {
+    width: 28px;
+    height: 14px;
+    background-color: #7A7A7A;
+    border-radius: 25px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .toggle-button.on {
+    background-color: #D81921;
+  }
+  
+  .toggle-circle {
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 1px;
+    transition: transform 0.3s;
+  }
+  
+  .toggle-button.on .toggle-circle {
+    transform: translateX(16px);
+  }
+  
