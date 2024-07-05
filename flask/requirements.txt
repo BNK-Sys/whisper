@@ -1,0 +1,8 @@
+Flask
+cmake==3.25.2
+dlib==19.24.2
+face_recognition
+matplotlib
+numpy
+Pillow
+requests_toolbelt
