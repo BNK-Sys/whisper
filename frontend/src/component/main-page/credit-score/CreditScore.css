@@ -17,7 +17,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1rem;
+    font-size: 1.4rem;
     margin-top: 10px;
 }
 
@@ -40,8 +40,8 @@
 
 .credit_score_col span {
     position: absolute;
-    top: 60px;
+    top: 55px;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.3rem;
 }
   

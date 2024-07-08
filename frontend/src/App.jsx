@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainPage from './pages/MainPage';
+import FindAccountPage from './pages/FindAccountPage';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<MainPage />}></Route>
+            <Route path='/find/account' element={<FindAccountPage/>}></Route>
           </Routes>
         </Router>
         </div>

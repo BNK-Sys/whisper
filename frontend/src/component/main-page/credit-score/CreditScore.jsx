@@ -27,12 +27,12 @@ const CreditScore = ({ name, score, rank, grade }) => {
         </svg>
         </div>
         <div className='credit_score_col'>
-            <div style={{marginBottom:"5px", color: "#666666", fontSize: "0.8rem"}}>상위</div>
-            <div style={{marginBottom:"5px", color: "#666666", fontSize: "1.2rem", fontWeight: "bold"}} >{rank}%</div>
+            <div style={{marginBottom:"5px", color: "#666666", fontSize: "1.2rem"}}>상위</div>
+            <div style={{marginBottom:"5px", color: "#666666", fontSize: "1.6rem", fontWeight: "bold"}} >{rank}%</div>
         </div>
         <div className='credit_score_col'>
-            <div style={{marginBottom:"5px", color: "#666666", fontSize: "0.8rem"}}>등급</div>
-            <div style={{marginBottom:"5px", color: "#666666", fontSize: "1.2rem", fontWeight: "bold"}} >{grade}</div>
+            <div style={{marginBottom:"5px", color: "#666666", fontSize: "1.2rem"}}>등급</div>
+            <div style={{marginBottom:"5px", color: "#666666", fontSize: "1.6rem", fontWeight: "bold"}} >{grade}</div>
         </div>
        </div>
     </div>
