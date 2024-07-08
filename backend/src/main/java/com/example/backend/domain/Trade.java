@@ -13,7 +13,7 @@ public class Trade extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "trade_id")
-    private Long id;  // 거래내역 id
+    private int id;  // 거래내역 id
 
     private int amount;  // 금액
     private String receivingAccountNumber;  // 수신 계좌번호

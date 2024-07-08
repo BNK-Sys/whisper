@@ -3,6 +3,7 @@ package com.example.backend.service;
 
 import com.example.backend.domain.Account;
 import com.example.backend.domain.Trade;
+import com.example.backend.dto.TradeResponse;
 import com.example.backend.dto.TransferRequest;
 import com.example.backend.exception.InsufficientFundsException;
 import com.example.backend.exception.NotFoundException;
@@ -14,6 +15,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Slf4j
@@ -59,5 +63,12 @@ public class AccountService {
 
     }
 
-
+    public List<TradeResponse> getTrade(String accountNumber) {
+        Account myAccount = accountRepository.findById(accountNumber)
+                .orElseThrow(() -> new NotFoundException("계좌가 없습니다"));
+        List<Trade> trades = tradeRepository.findByAccountNumber(accountNumber);
+        return trades.stream()
+                .map(trade -> new TradeResponse(trade.getId(), trade.getAmount(), trade.getReceivingAccountNumber(), trade.getName()))
+                .collect(Collectors.toList());
+    }
 }
