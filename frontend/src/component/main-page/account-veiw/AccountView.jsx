@@ -1,9 +1,10 @@
 import React from 'react'
 import './AccountView.css'
 import BnkLogo from "../../../assets/bnkLogo.png"
+import { useNavigate } from 'react-router-dom'
 
 const AccountView = () => {
-
+    const navigate = useNavigate();
   return (
     <div className='account_view'>
         <div className='account_title'>
@@ -18,7 +19,7 @@ const AccountView = () => {
         <div className='account_balance'>
             120,000,000 원
         </div>
-        <button>이체</button>
+        <button onClick={() => {navigate("/find/account")}}>이체</button>
     </div>
   )
 }

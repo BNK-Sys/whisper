@@ -31,7 +31,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
 .account_title_content div {
@@ -44,7 +44,7 @@
     align-items: center;
     width: 88%;
     height: 40px;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     font-weight: bold;
     margin-bottom: 24px;
 }
@@ -58,7 +58,7 @@
     background-color: #D81921;
     border-radius: 10px;
     color: #fff;
-    font-size: 1.1rem;
+    font-size: 1.4em;
     font-weight: 500;
     cursor: pointer;
 }
