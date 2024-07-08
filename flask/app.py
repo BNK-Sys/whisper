@@ -3,8 +3,7 @@ import face_recognition as fr
 import numpy as np
 import base64
 import io
-from io import BytesIO
-import cv2
+from flask_cors import CORS
 import os
 import requests
 # 문자열 비교 (영수증, 팬싸인회 이름 비교)
@@ -19,6 +18,7 @@ image_file = './data1.jpg' # server로 받은 영수증 이미지
 albumName = ""
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' # tensorflow의 로깅레벨 설정: error만 보이도록
 app = Flask(__name__)
+CORS(app)
 # CORS(app) # 웹 애플리케이션이 다른 도메인에서 호스팅된 API에 접근할 때 필요
 
 ## FE 에서 캡쳐된 사진? 받아오기 (./unknown_person.jpg에 저장하기)
@@ -27,9 +27,8 @@ def upload_file():
     if request.method == 'POST': # POST로 들어온 요청만
 
         try:
-            print("FE에서 FLASK로 헤더와 이미지 전송")
-            # fanId 값을 http 헤더에서 추출
-
+            print("FE에서 FLASK로 이미지 전송")
+            
             #웹에서 base64로 인코딩된 이미지 정보 가져오기
             one_data = request.files['image'].read()
             print(type(one_data))
@@ -147,3 +146,6 @@ def getDistance():
         print(e)
         print("Distance - exception in!")
         return jsonify({"success": False, "message": str(e)})
+    
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
