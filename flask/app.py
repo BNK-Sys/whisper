@@ -21,7 +21,6 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' # tensorflow의 로깅레벨 설정: er
 app = Flask(__name__)
 # CORS(app) # 웹 애플리케이션이 다른 도메인에서 호스팅된 API에 접근할 때 필요
 
-
 ## FE 에서 캡쳐된 사진? 받아오기 (./unknown_person.jpg에 저장하기)
 @app.route('/flask/checksame', methods = ['POST'])
 def upload_file():
@@ -67,9 +66,7 @@ def upload_file():
             # 외부 API로부터 데이터 수신할 때
             # : 지정된 url로 post 요청을 보냄
             response = requests.get(url).content
-            print("요기1")
             base64_decoded = base64.b64decode(response)
-            print("요기2")
             print(type(base64_decoded))
             # 받아온 이미지 데이터를 사용하여 Image.open 호출
             tmp = io.BytesIO(base64_decoded)
@@ -119,13 +116,7 @@ def getDistance():
         
         # 저장된 얼굴 사진 - S3에서 certificate_image를 가지고 와야한다!
         certificate_image = fr.load_image_file("./certificate_image.jpg")
-        print(certificate_image.dtype)
 
-        print(certificate_image.shape)
-        # image_gray = cv2.cvtColor(certificate_image, cv2.COLOR_BGR2GRAY)
-        # 그레이스케일 이미지를 다시 RGB로 변환합니다.
-        # certificate_image = cv2.cvtColor(image_gray, cv2.COLOR_GRAY2RGB)
-        print(certificate_image.dtype)
         #좌표 인식
         print("certificate_image print:")
         print(certificate_image)
@@ -156,7 +147,3 @@ def getDistance():
         print(e)
         print("Distance - exception in!")
         return jsonify({"success": False, "message": str(e)})
-
-if __name__ == "__main__":
-    SequenceMatcher(None, "굿모닝 우유 900ml", "서울 우유 리뉴얼 기념 팬싸인회").ratio()
-    run_simple('0.0.0.0', 5000, app)
