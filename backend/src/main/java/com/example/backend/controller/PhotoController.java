@@ -19,6 +19,7 @@ public class PhotoController {
     public byte[] getPhoto(@PathVariable("memberId") int memberId){
         try {
             byte[] bytes = s3Service.downloadFile(memberId);
+            System.out.println(bytes);
             return bytes;
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
