@@ -12,7 +12,7 @@ const Input = ({title, value, onChange}) => {
         <div className='input_title'>
             {title}
         </div>
-        <input type='text' on/>
+        <input type='text' value={value}/>
     </div>
   )
 }
