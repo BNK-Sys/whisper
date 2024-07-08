@@ -1,0 +1,23 @@
+.camera_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    background-color: #fff;
+    padding-top: 10px;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(139, 139, 139, 0.2);
+}
+
+.camera_label {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}

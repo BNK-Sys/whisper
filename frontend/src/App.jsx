@@ -5,6 +5,7 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainPage from './pages/MainPage';
 import FindAccountPage from './pages/FindAccountPage';
+import AccountCheckPage from './pages/AccountCheckPage';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Routes>
             <Route path="/" element={<MainPage />}></Route>
             <Route path='/find/account' element={<FindAccountPage/>}></Route>
+            <Route path='/check/account' element={<AccountCheckPage/>}></Route>
           </Routes>
         </Router>
         </div>

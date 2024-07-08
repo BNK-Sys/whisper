@@ -1,0 +1,20 @@
+.info_wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.info_name {
+    color: #6F6350;
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin-bottom: 6px;
+}
+
+.info_account {
+    font-weight: 600;
+    font-size: 1.4rem;
+}
