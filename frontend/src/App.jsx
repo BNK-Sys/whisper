@@ -6,6 +6,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainPage from './pages/MainPage';
 import FindAccountPage from './pages/FindAccountPage';
 import AccountCheckPage from './pages/AccountCheckPage';
+import TransferPage from './pages/TransferPage';
+import TransferCheckPage from './pages/TransferCheckPage';
+import Compelete from './pages/Compelete';
 
 function App() {
 
@@ -20,9 +23,18 @@ function App() {
         <div className='main_content'>
         <Router>
           <Routes>
+            {/* 메인페이지 */}
             <Route path="/" element={<MainPage />}></Route>
+            {/* 계좌입력페이지 */}
             <Route path='/find/account' element={<FindAccountPage/>}></Route>
+            {/* 계좌확인페이지 */}
             <Route path='/check/account' element={<AccountCheckPage/>}></Route>
+            {/* 송금금액입력페이지 */}
+            <Route path='/find/transfer' element={<TransferPage/>}></Route>
+            {/* 송금금액확인페이지 */}
+            <Route path='/check/transfer' element={<TransferCheckPage/>}></Route>
+            {/* 송금완료페이지 */}
+            <Route path='/compeletion' element={<Compelete/>}></Route>
           </Routes>
         </Router>
         </div>
