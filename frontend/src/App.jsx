@@ -9,6 +9,7 @@ import AccountCheckPage from './pages/AccountCheckPage';
 import TransferPage from './pages/TransferPage';
 import TransferCheckPage from './pages/TransferCheckPage';
 import Compelete from './pages/Compelete';
+import RecognitionPage from './pages/RecognitionPage';
 
 function App() {
 
@@ -35,6 +36,8 @@ function App() {
             <Route path='/check/transfer' element={<TransferCheckPage/>}></Route>
             {/* 송금완료페이지 */}
             <Route path='/compeletion' element={<Compelete/>}></Route>
+            {/*얼굴인증페이지 */}
+            <Route path='/check/face' element={<RecognitionPage/>}></Route>
           </Routes>
         </Router>
         </div>
