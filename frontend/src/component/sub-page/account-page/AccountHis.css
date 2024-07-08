@@ -1,0 +1,33 @@
+.account-container {
+    width: 80%;
+    height: 630px;
+    background-color: #fff;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(139, 139, 139, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.total-assets {
+    padding: 30px;
+}
+.total {
+    font-size: 20px;
+    font-weight: 500;
+}
+.assets {
+    font-size: 20px;
+    margin-top: 5px;
+}
+.add-amount {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+}
+.amount-font {
+    color: #7A7A7A;
+}

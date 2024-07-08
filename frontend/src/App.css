@@ -8,6 +8,7 @@
 .main_left {
   display: flex;
   flex: 0.65;
+  background-color: #B8A896;
 }
 
 .main_content {
@@ -22,4 +23,11 @@
 
 .main_right {
   display: flex;
+  background-color: #B8A896;
+  flex: 0.15;
+  flex: 0.15;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 20px;
 }

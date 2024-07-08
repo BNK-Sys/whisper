@@ -1,0 +1,28 @@
+.account-item-container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 25px;
+}
+.account-item{
+    display: flex;
+}
+.account-info{
+    margin-left: 10px;
+}
+.account-info-bank {
+    font-size: 16px;
+    font-weight: 500;
+}
+.account-info-amount {
+    font-size: 14px;
+}
+.account-transfer{
+    background-color: #F0F0F0;
+    border-radius: 5px;
+    color: #333333;
+    font-size: 13px;
+    padding:5px 15px 5px 15px;
+}

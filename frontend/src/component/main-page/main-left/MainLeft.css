@@ -1,0 +1,29 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+        align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
+.main-font {
+    font-size: 55px;
+    color: #6F6350;
+    font-weight: 700;
+}
+
+.content-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+.content {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #6F6350;
+    padding: 20px 35px 20px 35px;
+    border-radius: 10px;
+    font-weight: 650;
+    font-size: 25px;
+}
