@@ -8,6 +8,7 @@ import FindAccountPage from './pages/FindAccountPage';
 import AccountCheckPage from './pages/AccountCheckPage';
 import TransferPage from './pages/TransferPage';
 import TransferCheckPage from './pages/TransferCheckPage';
+import Compelete from './pages/Compelete';
 
 function App() {
 
@@ -32,6 +33,8 @@ function App() {
             <Route path='/find/transfer' element={<TransferPage/>}></Route>
             {/* 송금금액확인페이지 */}
             <Route path='/check/transfer' element={<TransferCheckPage/>}></Route>
+            {/* 송금완료페이지 */}
+            <Route path='/compeletion' element={<Compelete/>}></Route>
           </Routes>
         </Router>
         </div>
