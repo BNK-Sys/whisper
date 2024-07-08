@@ -2,16 +2,16 @@ package com.example.backend.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Account {
     @Id
@@ -24,7 +24,7 @@ public class Account {
     private Member member;
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Trade_history> tradeHistories = new ArrayList<>();
+    private List<Trade> tradeHistories = new ArrayList<>();
 
     public Account(int balance, String account_number, Member member) {
         this.balance = balance;
