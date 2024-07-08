@@ -1,0 +1,33 @@
+.top_explain_wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 179px;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+
+.top_explain_logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 66px;
+    margin-bottom: 10px;
+}
+
+.top_expain_context {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 93px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 10px 15px;
+}
+
+.top_expain_context p {
+    text-align: center;
+}
