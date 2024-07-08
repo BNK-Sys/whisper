@@ -1,0 +1,24 @@
+.input_wrapper {
+    min-height: 115px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.input_title {
+    display: flex;
+    font-size: 1.1rem;
+    font-weight: 600;
+    min-height: 81px;
+    align-items: center;
+}
+
+.input_wrapper input{
+    width: 98%;
+    border: 0;
+    border-bottom: 1px solid #7A7A7A;
+    background: none;
+    outline: none;
+    height: auto;
+    font-size: 1.1rem;
+    padding-bottom: 10px;
+}
