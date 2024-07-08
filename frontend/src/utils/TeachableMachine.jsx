@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as tmPose from '@teachablemachine/pose';
+import { useSetRecoilState } from 'recoil';
+import { isRender } from '../store/Render';
 
 const Teachable = () => {
     const URL = "https://teachablemachine.withgoogle.com/models/zqdy40GjE/";
@@ -10,6 +12,7 @@ const Teachable = () => {
     const canvasRef = useRef(null);
     const requestRef = useRef(null);
     const isRunningRef = useRef(true);
+    const setIsRender = useSetRecoilState(isRender);
 
     useEffect(() => {
         const loadModel = async () => {
@@ -34,9 +37,9 @@ const Teachable = () => {
                 await webcam.play();
                 webcamRef.current = webcam;
                 window.requestAnimationFrame(loop);
+                setIsRender(true);
             }
         };
-
         setupWebcam();
     }, [model]);
 
@@ -72,14 +75,11 @@ const Teachable = () => {
             console.log("1번 모션");
         } else if (predict2 === 1) {
             console.log("2번 모션");
-            
-            // setEndSTT(true);
-            
-        } else if (predict3 === 1) {
-            console.log("3번 모션");
             isRunningRef.current = false; // 루프 중지 플래그 설정
             window.cancelAnimationFrame(requestRef.current); // 애니메이션 프레임 루프 중지
-           
+            // setEndSTT(true);
+        } else if (predict3 === 1) {
+            console.log("3번 모션");
         }
     };
 
@@ -117,16 +117,14 @@ const Teachable = () => {
 
     return (
         <div>
-            <button onClick={drawStop}>Stop</button>
-            <button type="button" onClick={drawStart}>Start</button>
             <div style={{display:"none"}}>
                 <canvas ref={canvasRef} id="canvas" width="200" height="200"></canvas>
             </div>
-            <div id="label-container">
+            {/* <div id="label-container">
                 {predictions.map((pred, index) => (
                     <div key={index}>{`${pred.className}: ${pred.probability}`}</div>
                 ))}
-            </div>
+            </div> */}
         </div>
     );
 };
