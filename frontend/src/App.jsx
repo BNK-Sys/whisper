@@ -10,7 +10,11 @@ import TransferPage from './pages/TransferPage';
 import TransferCheckPage from './pages/TransferCheckPage';
 import Compelete from './pages/Compelete';
 import RecognitionPage from './pages/RecognitionPage';
-
+import TransPage from './pages/TransPage';
+import AccountPage from './pages/AccountPage';
+import LoadingPage from './pages/LoadingPage';
+import MainLeft from './component/main-page/main-left/MainLeft';
+import bnkgroup from './assets/bnkgroup.png';
 function App() {
 
   return (
@@ -18,7 +22,7 @@ function App() {
       <div className='main'>
         {/* 왼쪽영역 */}
         <div className='main_left'>
-
+          <MainLeft />
         </div>
         {/* 휴대폰영역 */}
         <div className='main_content'>
@@ -38,12 +42,19 @@ function App() {
             <Route path='/compeletion' element={<Compelete/>}></Route>
             {/*얼굴인증페이지 */}
             <Route path='/check/face' element={<RecognitionPage/>}></Route>
+            {/* 계좌조회페이지 */}
+            <Route path="/account" element={<AccountPage />}></Route>
+            {/* 거래내역페이지 */}
+            <Route path="/trans" element={<TransPage />}></Route>
+            {/* 로딩페이지 */}
+            <Route path="/loading" element={<LoadingPage />}></Route>
+          
           </Routes>
         </Router>
         </div>
         {/* 오른쪽영역 */}
         <div className='main_right'>
-
+          <img src={bnkgroup} width={120}/>
         </div>
       </div>
     </>
