@@ -3,6 +3,8 @@ import face_recognition as fr
 import numpy as np
 import base64
 import io
+from io import BytesIO
+import cv2
 import os
 import requests
 # 문자열 비교 (영수증, 팬싸인회 이름 비교)
@@ -26,7 +28,8 @@ def upload_file():
     if request.method == 'POST': # POST로 들어온 요청만
 
         try:
-            print("FE에서 FLASK로 이미지 전송")
+            print("FE에서 FLASK로 헤더와 이미지 전송")
+            # fanId 값을 http 헤더에서 추출
 
             #웹에서 base64로 인코딩된 이미지 정보 가져오기
             one_data = request.files['image'].read()
@@ -59,17 +62,14 @@ def upload_file():
             print("===============================================")
             print("BE에 헤더 전송 후 이미지 받아오기")
 
-            url = 'http://i10e104.p.ssafy.io:8080/image' ## spring url으로 수정하기
-
-            # headers
-            headers = {
-                'Authorization': token
-            }
+            url = 'http://localhost:8080/photo/300' ## spring url으로 수정하기
 
             # 외부 API로부터 데이터 수신할 때
             # : 지정된 url로 post 요청을 보냄
-            response = requests.get(url, headers=headers).content
+            response = requests.get(url).content
+            print("요기1")
             base64_decoded = base64.b64decode(response)
+            print("요기2")
             print(type(base64_decoded))
             # 받아온 이미지 데이터를 사용하여 Image.open 호출
             tmp = io.BytesIO(base64_decoded)
@@ -93,7 +93,7 @@ def upload_file():
             print("저장된 두 사진의 distance 판별 후 전송")
 
             distance = getDistance()
-            
+            print(distance)
             # 결괏값 출력
             pred_value = False
             if (distance < 0.43): # 거리가 0.43보다 작을 경우 -> distance 기준 값 변경하기
@@ -112,19 +112,26 @@ def upload_file():
             
             print("exception in!")
             return jsonify({"success": False, "message": str(e)})
-
         
-def getDistance(): ## 거리를 가져오는 함수
+def getDistance(): 
     try:
         # 들어온 두 값을 비교하여 인코딩한다.
-
+        
         # 저장된 얼굴 사진 - S3에서 certificate_image를 가지고 와야한다!
         certificate_image = fr.load_image_file("./certificate_image.jpg")
+        print(certificate_image.dtype)
+
+        print(certificate_image.shape)
+        # image_gray = cv2.cvtColor(certificate_image, cv2.COLOR_BGR2GRAY)
+        # 그레이스케일 이미지를 다시 RGB로 변환합니다.
+        # certificate_image = cv2.cvtColor(image_gray, cv2.COLOR_GRAY2RGB)
+        print(certificate_image.dtype)
         #좌표 인식
         print("certificate_image print:")
         print(certificate_image)
         print("face_locations print:")
         print(fr.face_locations(certificate_image))
+
         top, right, bottom, left = fr.face_locations(certificate_image)[0] # 각 인물의 이미지에서 얼굴의 위치를 찾
         certificate_image = certificate_image[top:bottom, left:right] # 해당 위치를 사용하여 얼굴을 자름
 
@@ -143,11 +150,12 @@ def getDistance(): ## 거리를 가져오는 함수
         print("distance: ", distance)
 
         return distance
+        # return 10
 
     except Exception as e:
-            
-            print("Distance - exception in!")
-            return jsonify({"success": False, "message": str(e)})
+        print(e)
+        print("Distance - exception in!")
+        return jsonify({"success": False, "message": str(e)})
 
 if __name__ == "__main__":
     SequenceMatcher(None, "굿모닝 우유 900ml", "서울 우유 리뉴얼 기념 팬싸인회").ratio()

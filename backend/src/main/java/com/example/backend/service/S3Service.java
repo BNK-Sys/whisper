@@ -23,7 +23,7 @@ public class S3Service {
 
     public byte[] downloadFile(int memberId) throws FileNotFoundException {
 
-        String fileName = memberId + "/스폰지밥.png";
+        String fileName = memberId + "/certImage.jpg";
         validateFileExists(fileName);
 
         S3Object object = amazonS3Client.getObject(bucket, fileName);
