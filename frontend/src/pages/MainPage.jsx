@@ -13,6 +13,7 @@ import { sttText } from '../store/SpeechToText';
 import 'regenerator-runtime/runtime';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { sendTranscript } from '../service/menu'; // 임포트
+import { getSpeech } from '../component/commons/tts/TTS';
 
 const MainPage = () => {
   const {
@@ -55,8 +56,29 @@ const MainPage = () => {
     return <span>브라우저가 음성 인식을 지원하지 않습니다.</span>;
   }
 
+  {/* TTS 기능 */}
+  const voiceValue = "이체, 계좌조회, 거래내역 중 하나를 선택해주세요.";
+  // TTS 실행
+  const handleSpeechButton = () => {
+      getSpeech(voiceValue);
+  };
+  // // TTS 멈춤
+  // const handlePauseButton = () => {
+  //     getSpeech(pauseSpeech());
+  // };
+  let tts = false;
+  useEffect(() => {
+    if(!tts) {
+      tts = true;
+      getSpeech(voiceValue);
+      window.speechSynthesis.getVoices();
+    }
+  }, [])
+
   return (
     <div>
+      <button onClick={handleSpeechButton}>tts 실행</button>
+      {/* <button onClick={handlePauseButton}>tts 멈춤</button> */}
       <p>마이크: {listening ? '켜짐' : '꺼짐'}</p>
       <button onClick={() => SpeechRecognition.startListening({ continuous: true })}>시작</button>
       <button onClick={SpeechRecognition.stopListening}>중지</button>
