@@ -2,11 +2,13 @@ import React, { useRef, useState, useImperativeHandle, forwardRef } from 'react'
 import Webcam from 'react-webcam';
 import axios from 'axios';
 import "./Camera.css";
+import { useNavigate } from 'react-router-dom';
 
 const Camera = forwardRef(({ onCapture }, ref) => {
   const webcamRef = useRef(null);
   const [capturedImage, setCapturedImage] = useState(null);
   const [isSamePerson, setIsSamePerson] = useState(null);
+  const navigate = useNavigate();
 
   const capture = () => {
     const imageSrc = webcamRef.current.getScreenshot();
@@ -49,6 +51,8 @@ const Camera = forwardRef(({ onCapture }, ref) => {
       }else{
         console.log("diff")
       }
+
+      navigate('/recogloading', { state: { isSamePerson } });
     } catch (error) {
       console.error('Error sending image to server:', error);
     }
@@ -81,7 +85,7 @@ const Camera = forwardRef(({ onCapture }, ref) => {
 
       {capturedImage && (
         <div>
-          <h2>Captured Image</h2>
+          <h2>캡쳐된 이미지</h2>
           <img src={capturedImage} alt="Captured" />
         </div>
       )}

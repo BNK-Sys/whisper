@@ -21,6 +21,7 @@ const RecognitionPageWithCapture = () => {
   return (
     <div>
       <div style={{marginTop: "30px", marginBottom: "80px"}}></div>
+      <h2>송금 전 얼굴 인증을 진행합니다.</h2>
       <img src={RecognitionImg} alt="Your Image" style={{width: "60px", maxWidth: "640px", display: "block", margin: "0 auto 20px"}} />
       <Camera ref={cameraRef} onCapture={handleCapture} />
     </div>

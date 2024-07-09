@@ -32,14 +32,6 @@ def upload_file():
             #웹에서 base64로 인코딩된 이미지 정보 가져오기
             one_data = request.files['image'].read()
             print(type(one_data))
-            # _, one_data = request.files['image'].split(',')
-
-            print("Success to get incoding image from user") # debugging
-            print('incoding image:', one_data[:10]) # base64 코드 앞쪽 10자리만 확인
-
-            ### 이미지 데이터 처리 코드
-            imgdata = base64.b64decode(one_data) # 디코딩하여 byte 형태로 변환
-            print("Success to decode base64 code") # debugging
 
             #byte형태의 이미지 데이터를 이미지로 변환: Pillow(PIL) 라이브러리를 사용해 이미지 오픈
             print("Success to get image data") # debugging
@@ -48,14 +40,6 @@ def upload_file():
                 print("photo 잘 저장했습니다")
 
             photo.convert("RGB").save("unknown_person.jpg") # 이미지화된 이미지를 check_image_file.jpg로 저장한다
-
-            # try:
-            #     # photo.convert("RGB").save("unknown_person.jpg") # 이미지화된 이미지를 unknown_person.jpg로 저장한다
-            #     photo.save("unknown_person.jpg") # 이미지화된 이미지를 unknown_person.jpg로 저장한다
-            #     print("Image saved successfully.")
-            # except Exception as e:
-            #     print("Error saving image:", str(e))
-
 
             print("===============================================")
             print("BE에 헤더 전송 후 이미지 받아오기")
@@ -115,12 +99,6 @@ def getDistance():
         
         # 저장된 얼굴 사진 - S3에서 certificate_image를 가지고 와야한다!
         certificate_image = fr.load_image_file("./certificate_image.jpg")
-
-        #좌표 인식
-        print("certificate_image print:")
-        print(certificate_image)
-        print("face_locations print:")
-        print(fr.face_locations(certificate_image))
 
         top, right, bottom, left = fr.face_locations(certificate_image)[0] # 각 인물의 이미지에서 얼굴의 위치를 찾
         certificate_image = certificate_image[top:bottom, left:right] # 해당 위치를 사용하여 얼굴을 자름
