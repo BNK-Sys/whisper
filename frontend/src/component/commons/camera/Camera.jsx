@@ -2,11 +2,13 @@ import React, { useRef, useState, useImperativeHandle, forwardRef } from 'react'
 import Webcam from 'react-webcam';
 import axios from 'axios';
 import "./Camera.css";
+import { useNavigate } from 'react-router-dom';
 
 const Camera = forwardRef(({ onCapture }, ref) => {
   const webcamRef = useRef(null);
   const [capturedImage, setCapturedImage] = useState(null);
   const [isSamePerson, setIsSamePerson] = useState(null);
+  const navigate = useNavigate();
 
   const capture = () => {
     const imageSrc = webcamRef.current.getScreenshot();
@@ -46,6 +48,7 @@ const Camera = forwardRef(({ onCapture }, ref) => {
 
       if(isSamePerson){
         console.log("same")
+        navigate('/compeletion')
       }else{
         console.log("diff")
       }
