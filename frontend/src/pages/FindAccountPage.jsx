@@ -6,7 +6,6 @@ import Input from '../component/commons/input/Input';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { sttText } from '../store/SpeechToText';
-import { getSpeech } from '../component/commons/tts/TTS';
 
 const FindAccountPage = () => {
   const {
