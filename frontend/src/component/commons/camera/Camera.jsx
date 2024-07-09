@@ -48,10 +48,11 @@ const Camera = forwardRef(({ onCapture }, ref) => {
 
       if(isSamePerson){
         console.log("same")
-        navigate('/compeletion')
       }else{
         console.log("diff")
       }
+
+      navigate('/recogloading', { state: { isSamePerson } });
     } catch (error) {
       console.error('Error sending image to server:', error);
     }
@@ -84,7 +85,7 @@ const Camera = forwardRef(({ onCapture }, ref) => {
 
       {capturedImage && (
         <div>
-          <h2>Captured Image</h2>
+          <h2>캡쳐된 이미지</h2>
           <img src={capturedImage} alt="Captured" />
         </div>
       )}
