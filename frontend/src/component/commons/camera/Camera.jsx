@@ -83,12 +83,12 @@ const Camera = forwardRef(({ onCapture }, ref) => {
         얼굴을 인식 중입니다.
       </div>
 
-      {capturedImage && (
+      {/* {capturedImage && (
         <div>
           <h2>캡쳐된 이미지</h2>
           <img src={capturedImage} alt="Captured" />
         </div>
-      )}
+      )} */}
     </div>
   );
 });
