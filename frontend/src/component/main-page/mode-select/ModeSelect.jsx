@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./ModeSelect.css"
+import { getSpeech } from '../../commons/tts/TTS';
 
 const ModeSelect = () => {
 
@@ -16,6 +17,7 @@ const ModeSelect = () => {
                 <div className="toggle-circle"></div>
             </div>
         </div>
+        
     );
 }
 
