@@ -9,7 +9,7 @@ const ModeSelect = () => {
     const handleToggle = () => {
         setIsOn(!isOn);
     };
-
+    
     return (
         <div className="toggle-container">
             <div className="toggle-label">쉬운모드</div>
