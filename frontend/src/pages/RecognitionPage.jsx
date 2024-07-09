@@ -1,6 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import RecognitionImg from '../assets/recognition.png';
 import Camera from '../component/commons/camera/Camera';
+import { getSpeech } from '../component/commons/tts/TTS';
+import TopExplain from '../component/commons/top-explain/TopExplain';
 
 const RecognitionPageWithCapture = () => {
   const cameraRef = useRef(null);
@@ -20,6 +22,7 @@ const RecognitionPageWithCapture = () => {
 
   return (
     <div>
+      <TopExplain context={"얼굴을 인식해주세요"} style={{display: "none"}}/>
       <div style={{marginTop: "30px", marginBottom: "80px"}}></div>
       <img src={RecognitionImg} alt="Your Image" style={{width: "60px", maxWidth: "640px", display: "block", margin: "0 auto 20px"}} />
       <Camera ref={cameraRef} onCapture={handleCapture} />

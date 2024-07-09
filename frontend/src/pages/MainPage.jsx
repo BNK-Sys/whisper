@@ -59,25 +59,26 @@ const MainPage = () => {
   {/* TTS 기능 */}
   const voiceValue = "이체, 계좌조회, 거래내역 중 하나를 선택해주세요.";
   // TTS 실행
-  const handleSpeechButton = () => {
-      getSpeech(voiceValue);
-  };
+  // const handleSpeechButton = () => {
+  //     getSpeech(voiceValue);
+  // };
   // // TTS 멈춤
   // const handlePauseButton = () => {
   //     getSpeech(pauseSpeech());
   // };
-  let tts = false;
+
+  const [tts, setTts] = useState(false);
   useEffect(() => {
-    if(!tts) {
-      tts = true;
+      if(!tts){
+      setTts(true);
       getSpeech(voiceValue);
       window.speechSynthesis.getVoices();
-    }
-  }, [])
+      }
+  })
 
   return (
     <div>
-      <button onClick={handleSpeechButton}>tts 실행</button>
+      {/* <button onClick={handleSpeechButton}>tts 실행</button> */}
       {/* <button onClick={handlePauseButton}>tts 멈춤</button> */}
       <p>마이크: {listening ? '켜짐' : '꺼짐'}</p>
       <button onClick={() => SpeechRecognition.startListening({ continuous: true })}>시작</button>

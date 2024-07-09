@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import MegaPhone from "../../../assets/magaphone.png";
 import "./TopExplain.css";
 import { getSpeech } from '../tts/TTS';
@@ -7,10 +7,10 @@ const TopExplain = ({context}) => {
 
   {/* TTS 기능 */}
   const voiceValue = context;
-  let tts = false;
+  const [tts, setTts] = useState(false);
   useEffect(() => {
     if(!tts) {
-      tts = true;
+      setTts(true);
       getSpeech(voiceValue);
       window.speechSynthesis.getVoices();
     }
