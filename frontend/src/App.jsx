@@ -18,6 +18,7 @@ import MainLeft from './component/main-page/main-left/MainLeft';
 import bnkgroup from './assets/bnkgroup.png';
 import LoadingAccountPage from './pages/LoadingAccountPage';
 import LoadingTransferPage from './pages/LoadingTransferPage';
+import LoadingFindTransfer from './pages/LoadingFindTransfer';
 function App() {
 
   return (
@@ -57,6 +58,7 @@ function App() {
             <Route path="/recogloading" element={<RecLoadingPage />}></Route>
             {/* 이체 로딩페이지 */}
             <Route path='/loading/transfer' element={<LoadingTransferPage />}></Route>
+            <Route path='/loading/find/transfer' element={<LoadingFindTransfer/>}></Route>
           </Routes>
         </Router>
         </div>

@@ -25,7 +25,7 @@ const TransCheckPage = () => {
     console.log(getSelectType);
     if(getSelectType == "yes") {
       setSelectType("none");
-      navigate("/check/face");
+      navigate("/loading/find/transfer");
     }
     else if(getSelectType == "no") {
       setSelectType("none");
