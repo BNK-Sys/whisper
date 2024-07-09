@@ -16,6 +16,7 @@ import LoadingPage from './pages/LoadingPage';
 import RecLoadingPage from './pages/RecognitionLoadingPage';
 import MainLeft from './component/main-page/main-left/MainLeft';
 import bnkgroup from './assets/bnkgroup.png';
+import LoadingAccountPage from './pages/LoadingAccountPage';
 function App() {
 
   return (
@@ -49,6 +50,8 @@ function App() {
             <Route path="/trans" element={<TransPage />}></Route>
             {/* 로딩페이지 */}
             <Route path="/loading" element={<LoadingPage />}></Route>
+             {/* 계좌 로딩페이지 */}
+            <Route path='/loading/account' element={<LoadingAccountPage />}></Route>
             {/* 얼굴인식후로딩페이지 */}
             <Route path="/recogloading" element={<RecLoadingPage />}></Route>
           </Routes>

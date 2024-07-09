@@ -28,13 +28,15 @@ const FindAccountPage = () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
+
       timeoutRef.current = setTimeout(() => {
         // STT를 종료하고, Recoil에 텍스트 저장 후, 페이지 이동.
         SpeechRecognition.stopListening();
         setSttText(transcript);
-        navigate("/check/account");
+        navigate("/loading/account");
       }, 2000);
     }
+    
   }, [transcript, lastTranscript, setSttText, navigate]);
 
   useEffect(() => {
