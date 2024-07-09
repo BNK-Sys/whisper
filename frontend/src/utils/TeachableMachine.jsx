@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as tmPose from '@teachablemachine/pose';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { isRender } from '../store/Render';
+import { selectType } from '../store/Teachable';
 
 const Teachable = () => {
-    const URL = "https://teachablemachine.withgoogle.com/models/zqdy40GjE/";
+    const URL = "https://teachablemachine.withgoogle.com/models/6GFBNS7Sx/";
     const [model, setModel] = useState(null);
     const [maxPredictions, setMaxPredictions] = useState(0);
     const [predictions, setPredictions] = useState([]);
@@ -13,12 +14,12 @@ const Teachable = () => {
     const requestRef = useRef(null);
     const isRunningRef = useRef(true);
     const setIsRender = useSetRecoilState(isRender);
+    const setSelectType = useSetRecoilState(selectType);
 
     useEffect(() => {
         const loadModel = async () => {
             const modelURL = URL + "model.json";
             const metadataURL = URL + "metadata.json";
-
             const loadedModel = await tmPose.load(modelURL, metadataURL);
             setModel(loadedModel);
             setMaxPredictions(loadedModel.getTotalClasses());
@@ -77,9 +78,12 @@ const Teachable = () => {
             console.log("2번 모션");
             isRunningRef.current = false; // 루프 중지 플래그 설정
             window.cancelAnimationFrame(requestRef.current); // 애니메이션 프레임 루프 중지
-            // setEndSTT(true);
+            setSelectType("no");
         } else if (predict3 === 1) {
             console.log("3번 모션");
+            isRunningRef.current = false; // 루프 중지 플래그 설정
+            window.cancelAnimationFrame(requestRef.current); // 애니메이션 프레임 루프 중지
+            setSelectType("yes");
         }
     };
 

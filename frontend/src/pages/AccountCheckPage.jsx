@@ -2,19 +2,36 @@ import React, { useEffect } from 'react'
 import Camera from '../component/commons/camera/Camera'
 import Info from '../component/commons/info/Info'
 import TopExplain from '../component/commons/top-explain/TopExplain'
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { sttText } from '../store/SpeechToText'
 import Teachable from '../utils/TeachableMachine'
 import { isRender } from '../store/Render'
 import Loading from "../assets/loader.gif";
+import { selectType } from '../store/Teachable'
+import { useNavigate } from 'react-router-dom'
 
 const AccountCheckPage = () => {
   const getSttText = useRecoilValue(sttText);
   const getIsRender = useRecoilValue(isRender);
+  const getSelectType = useRecoilValue(selectType);
+  const setSelectType = useSetRecoilState(selectType);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log(getIsRender);
   }, [])
+
+  useEffect(() => {
+    console.log(getSelectType);
+    if(getSelectType == "yes") {
+      setSelectType("none");
+      navigate("/find/transfer");
+    }
+    else if(getSelectType == "no") {
+      setSelectType("none");
+      navigate("/find/account");
+    }
+  }, [getSelectType]);
 
   return (
     <div>
