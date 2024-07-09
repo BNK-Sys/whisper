@@ -16,7 +16,7 @@ const RecognitionLoadingPage = () => {
                 // 다른 사람일 때 처리
                 navigate('/check/face'); // 다른 사람일 때 이동할 페이지
             }
-        }, 3500); // 3.5초
+        }, 2000); // 2초
 
         return () => clearTimeout(timer); // 타이머 정리
     }, [isSamePerson, navigate]);

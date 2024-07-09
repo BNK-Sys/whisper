@@ -11,7 +11,7 @@ const RecognitionPageWithCapture = () => {
       if (cameraRef.current) {
         cameraRef.current.capture();
       }
-    }, 6000); // 6000ms = 6초
+    }, 5000); // 5000ms = 5초
     return () => clearTimeout(timer); // 컴포넌트 언마운트 시 타이머 클리어
   }, []);
 
