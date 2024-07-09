@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -20,7 +20,6 @@ import LoadingAccountPage from './pages/LoadingAccountPage';
 import LoadingTransferPage from './pages/LoadingTransferPage';
 import LoadingFindTransfer from './pages/LoadingFindTransfer';
 function App() {
-
   return (
     <>
       <div className='main'>

@@ -1,15 +1,15 @@
 import React from 'react'
 import "./MainPageButton.css"
-import Help from "../../../assets/help.png"
+import Recommend from "../../../assets/recommend.png"
 
 const FnQButton = () => {
   return (
     <div className='fnq_button'>
         <div className='fnq_button_item'>
-            <img src={Help} width={20} height={20}/>
+            <img src={Recommend} width={20} height={20}/>
         </div>
         <div className='fnq_button_item2'>
-            FAQ
+            금융상품 추천
         </div>
     </div>
   )
