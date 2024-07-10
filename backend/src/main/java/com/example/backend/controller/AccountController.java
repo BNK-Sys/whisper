@@ -23,7 +23,7 @@ public class AccountController {
     //잔액 조회
     @GetMapping("/balance")
     @Operation(summary = "잔액 조회", description = "accountNumber로 잔액 조회")
-    public BalanceResponse getBalance(String accountNumber) {
+    public BalanceResponse getBalance(@RequestParam String accountNumber) {
         Integer balance = accountService.getBalance(accountNumber);
         return new BalanceResponse(balance);
     }

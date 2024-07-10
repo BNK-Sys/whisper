@@ -75,7 +75,7 @@ const MainPage = () => {
       <button onClick={SpeechRecognition.stopListening}>중지</button>
       <button onClick={resetTranscript}>리셋</button> */}
       {transcript}
-      <ModeSelect />
+      {/* <ModeSelect /> */}
       <AccountView />
       <div style={{ display: "flex", flexDirection: "row", width: "80%", margin: "15px auto" }}>
         <MenuItem title={"계좌조회"} img={BankItme1} />
