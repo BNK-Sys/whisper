@@ -13,6 +13,7 @@ const LoadingAccountPage = () => {
     useEffect(() => {
         const processNavigation = async () => {
             const accountNum = await getAccountNum(getSttText); // 비동기 함수 호출 시 await 사용
+            console.log(accountNum);
             setSttText(accountNum);
             navigate("/check/account");
         };
