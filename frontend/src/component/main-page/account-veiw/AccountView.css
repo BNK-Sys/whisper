@@ -50,8 +50,8 @@
 .account_balance {
     display: flex;
     margin: 0 auto;
-    justify-content: start;
-    align-items: center;
+    justify-content: end;
+    align-items: end;
     width: 88%;
     height: 40px;
     font-size: 1.6rem;
