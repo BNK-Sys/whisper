@@ -6,6 +6,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import { amount, sttText } from '../store/SpeechToText';
 import { useSetRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
+import { pauseSpeech } from '../component/commons/tts/TTS';
 
 
 const TransferPage = () => {
@@ -46,6 +47,7 @@ const TransferPage = () => {
 
     // 언마운트 시 마이크 중지
     return () => {
+      pauseSpeech();
       SpeechRecognition.stopListening();
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);

@@ -14,7 +14,7 @@ import { sttText } from '../store/SpeechToText';
 import 'regenerator-runtime/runtime';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { sendTranscript } from '../service/menu'; // 임포트
-import { getSpeech } from '../component/commons/tts/TTS';
+import { getSpeech, pauseSpeech } from '../component/commons/tts/TTS';
 
 const MainPage = () => {
   const {

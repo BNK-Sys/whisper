@@ -9,6 +9,7 @@ import { isRender } from '../store/Render'
 import Loading from "../assets/loader.gif";
 import { selectType } from '../store/Teachable'
 import { useNavigate } from 'react-router-dom'
+import { pauseSpeech } from '../component/commons/tts/TTS'
 
 const TransCheckPage = () => {
   const getAmount = useRecoilValue(amount);
@@ -18,7 +19,7 @@ const TransCheckPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(getIsRender);
+    pauseSpeech();
   }, [])
 
   useEffect(() => {
