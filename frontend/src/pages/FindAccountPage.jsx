@@ -40,6 +40,7 @@ const FindAccountPage = () => {
 
   useEffect(() => {
     // 마운트 시 마이크 시작
+    setSttText("");
     SpeechRecognition.startListening({ continuous: true });
 
     // 언마운트 시 마이크 중지

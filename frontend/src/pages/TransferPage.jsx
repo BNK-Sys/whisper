@@ -41,6 +41,7 @@ const TransferPage = () => {
 
   useEffect(() => {
     // 마운트 시 마이크 시작
+    setAmount("");
     SpeechRecognition.startListening({ continuous: true });
 
     // 언마운트 시 마이크 중지
