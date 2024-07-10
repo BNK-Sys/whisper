@@ -6,6 +6,7 @@ import Input from '../component/commons/input/Input';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { sttText } from '../store/SpeechToText';
+import { pauseSpeech } from '../component/commons/tts/TTS';
 
 const FindAccountPage = () => {
   const {
@@ -45,6 +46,7 @@ const FindAccountPage = () => {
 
     // 언마운트 시 마이크 중지
     return () => {
+      pauseSpeech();
       SpeechRecognition.stopListening();
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);

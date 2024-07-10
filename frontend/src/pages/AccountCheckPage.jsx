@@ -9,7 +9,7 @@ import { isRender } from '../store/Render'
 import Loading from "../assets/loader.gif";
 import { selectType } from '../store/Teachable'
 import { useNavigate } from 'react-router-dom'
-import { getSpeech } from '../component/commons/tts/TTS';
+import { getSpeech, pauseSpeech } from '../component/commons/tts/TTS';
 
 const AccountCheckPage = () => {
   const [endSpeech, setEndSpeech] = useState(false);
@@ -20,6 +20,12 @@ const AccountCheckPage = () => {
   const navigate = useNavigate();
 
   const voiceValue = getSttText;
+
+  useEffect(() => {
+    return () => {
+      pauseSpeech();
+    }
+  }, [])
 
   useEffect(() => {
     console.log(getSttText);
