@@ -70,10 +70,10 @@ const MainPage = () => {
   return (
     <div>
       {/* <button onClick={handlePauseButton}>tts 멈춤</button> */}
-      <p>마이크: {listening ? '켜짐' : '꺼짐'}</p>
-      <button onClick={() => SpeechRecognition.startListening({ continuous: true })}>시작</button>
+      {/* <p>마이크: {listening ? '켜짐' : '꺼짐'}</p> */}
+      {/* <button onClick={() => SpeechRecognition.startListening({ continuous: true })}>시작</button>
       <button onClick={SpeechRecognition.stopListening}>중지</button>
-      <button onClick={resetTranscript}>리셋</button>
+      <button onClick={resetTranscript}>리셋</button> */}
       {transcript}
       <ModeSelect />
       <AccountView />

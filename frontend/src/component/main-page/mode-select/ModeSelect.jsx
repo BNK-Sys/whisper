@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import "./ModeSelect.css"
-import { getSpeech } from '../../commons/tts/TTS';
 
 const ModeSelect = () => {
 
@@ -12,7 +11,7 @@ const ModeSelect = () => {
     
     return (
         <div className="toggle-container">
-            <div className="toggle-label">쉬운모드</div>
+            <div className="toggle-label">큰글씨 보기</div>
             <div className={`toggle-button ${isOn ? 'on' : 'off'}`} onClick={handleToggle}>
                 <div className="toggle-circle"></div>
             </div>
