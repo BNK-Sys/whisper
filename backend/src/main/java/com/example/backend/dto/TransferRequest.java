@@ -7,9 +7,9 @@ import lombok.Data;
 public class TransferRequest {
     private String accountNumber;
     private String receivingAccountNumber;
-    private int amount;
+    private String amount;
 
-    public TransferRequest(String accountNumber, String receivingAccountNumber, int amount) {
+    public TransferRequest(String accountNumber, String receivingAccountNumber, String amount) {
         this.accountNumber = accountNumber;
         this.receivingAccountNumber = receivingAccountNumber;
         this.amount = amount;

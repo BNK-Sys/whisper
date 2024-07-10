@@ -37,7 +37,7 @@ const TransCheckPage = () => {
     <div>
         <TopExplain context={"아래 금액이 맞으시다면 고개를 오른쪽으로 돌려주세요"}/>
         <div style={{marginTop: "30px", marginBottom: "80px"}}>
-          <Info content={getAmount}/>
+          <Info content={getAmount + '원'}/>
         </div>
         {getIsRender ? <Camera/> : <Loader/>}
         <Teachable/>

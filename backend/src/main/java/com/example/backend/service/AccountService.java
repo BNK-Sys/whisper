@@ -38,26 +38,28 @@ public class AccountService {
     //이체 시 거래 내역 생성
     public Integer transfer(TransferRequest transferRequest) {
         // 내 계좌 체크
+        System.out.println(transferRequest.getAccountNumber());
         Account myAccount = accountRepository.findById(transferRequest.getAccountNumber())
                 .orElseThrow(() -> new NotFoundException("계좌가 없습니다"));
 
         // 계좌 잔액 체크 : myAccount의 balance가 얼마인지 체크
-        if (myAccount.getBalance() < transferRequest.getAmount()) {
+        int amount = Integer.parseInt(transferRequest.getAmount().replace(",", ""));
+        if (myAccount.getBalance() < amount) {
             throw new InsufficientFundsException("잔액이 부족합니다");
         }
         // 받는 계좌 유효성 체크
         Account receivingAccount = accountRepository.findById(transferRequest.getReceivingAccountNumber())
                 .orElseThrow(() -> new NotFoundException("받는 계좌가 없습니다"));
         //거래
-        myAccount.setBalance(myAccount.getBalance() - transferRequest.getAmount());
+        myAccount.setBalance(myAccount.getBalance() - amount);
         accountRepository.save(myAccount);
 
         // 받는 계좌에 amount 만큼 추가
-        receivingAccount.setBalance(receivingAccount.getBalance() + transferRequest.getAmount());
+        receivingAccount.setBalance(receivingAccount.getBalance() + amount);
         accountRepository.save(receivingAccount);
 
         //거래 내역 생성
-        Trade trade = new Trade(transferRequest.getAmount(), receivingAccount, myAccount);
+        Trade trade = new Trade(amount, receivingAccount, myAccount);
         tradeRepository.save(trade);
         return 1;
 

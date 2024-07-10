@@ -10,7 +10,7 @@ const AccountItem = (props) => {
                     <div className="account-info-amount">{props.amount}원</div>
                 </div>
             </div>
-            <div className="account-transfer">송금</div>
+            <div className="account-transfer">이체</div>
         </div>
     );
 }

@@ -14,7 +14,7 @@ const LoadingTransferPage = () => {
     useEffect(() => {
         const processNavigation = async () => {
             const accountNum = await getAmountNum(getAmount); // 비동기 함수 호출 시 await 사용
-            setAmount(accountNum + "원");
+            setAmount(accountNum);
             navigate("/check/transfer");
         };
 
