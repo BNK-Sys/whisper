@@ -3,7 +3,7 @@ import MegaPhone from "../../../assets/magaphone.png";
 import "./TopExplain.css";
 import { getSpeech } from '../tts/TTS';
 
-const TopExplain = ({ context }) => {
+const TopExplain = ({ context, data }) => {
 
   // TTS 기능
   const voiceValue = context;
@@ -12,7 +12,7 @@ const TopExplain = ({ context }) => {
   useEffect(() => {
     if (!tts) {
       setTts(true);
-      getSpeech(voiceValue);
+      getSpeech(data + voiceValue);
       window.speechSynthesis.getVoices();
     }
   }, []);
