@@ -4,22 +4,24 @@ import numpy as np
 import base64
 import io
 from flask_cors import CORS
+from openai import OpenAI
 import os
 import requests
-# 문자열 비교 (영수증, 팬싸인회 이름 비교)
-from difflib import SequenceMatcher
 # from flask_cors import CORS
-from PIL import Image, ImageOps
-from werkzeug.serving import run_simple
+from PIL import Image
+from dotenv import load_dotenv
 
-api_url = 'https://igq83o9rcc.apigw.ntruss.com/custom/v1/28107/eab1aa4e0a50a7fbaf9304aaaac1ba04a63c2600bbbd373b1334daa2120c0d76/document/receipt'
-secret_key = 'c3lXZlpEbkFmZU5yYW1sbnZteEdzS0lLTU1yZm9BQ3U='
+# .env 파일에서 환경 변수 로드
+load_dotenv()
+
+# 환경 변수에서 OpenAI API 키 가져오기
+gpt_key = os.getenv('OPENAI_API_KEY')
+
 image_file = './data1.jpg' # server로 받은 영수증 이미지 
 albumName = ""
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' # tensorflow의 로깅레벨 설정: error만 보이도록
 app = Flask(__name__)
 CORS(app)
-# CORS(app) # 웹 애플리케이션이 다른 도메인에서 호스팅된 API에 접근할 때 필요
 
 ## FE 에서 캡쳐된 사진? 받아오기 (./unknown_person.jpg에 저장하기)
 @app.route('/flask/checksame', methods = ['POST'])
@@ -40,7 +42,7 @@ def upload_file():
                 print("photo 잘 저장했습니다")
 
             photo.convert("RGB").save("unknown_person.jpg") # 이미지화된 이미지를 check_image_file.jpg로 저장한다
-
+            
             print("===============================================")
             print("BE에 헤더 전송 후 이미지 받아오기")
 
@@ -92,7 +94,27 @@ def upload_file():
             
             print("exception in!")
             return jsonify({"success": False, "message": str(e)})
-        
+
+@app.route('/chat', methods = ['POST'])
+def recommend():
+    try:
+        data = request.get_json()
+        print(data['content'])
+        client = OpenAI(api_key=gpt_key)
+        # request.
+        completion = client.chat.completions.create(
+            model='ft:gpt-3.5-turbo-1106:personal::9jgyD1ds',
+            messages=[
+                {"role": "user", "content": data['content']}
+            ]
+        )
+        print(completion.choices[0].message.content)
+
+        return completion.choices[0].message.content
+    
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 def getDistance(): 
     try:
         # 들어온 두 값을 비교하여 인코딩한다.

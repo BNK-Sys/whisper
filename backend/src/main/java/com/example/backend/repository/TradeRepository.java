@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface TradeRepository  extends JpaRepository<Trade, Integer> {
-    @Query("SELECT t FROM Trade t WHERE t.account.account_number = :accountNumber")
+    @Query("SELECT t FROM Trade t WHERE t.account.account_number = :accountNumber ORDER BY t.createdAt DESC")
     List<Trade> findByAccountNumber(String accountNumber);
 }

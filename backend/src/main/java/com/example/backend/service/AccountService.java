@@ -2,7 +2,9 @@ package com.example.backend.service;
 
 
 import com.example.backend.domain.Account;
+import com.example.backend.domain.Member;
 import com.example.backend.domain.Trade;
+import com.example.backend.dto.BalanceDto;
 import com.example.backend.dto.TradeResponse;
 import com.example.backend.dto.TransferRequest;
 import com.example.backend.exception.InsufficientFundsException;
@@ -11,6 +13,7 @@ import com.example.backend.repository.AccountRepository;
 
 import com.example.backend.repository.MemberRepository;
 import com.example.backend.repository.TradeRepository;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -28,11 +31,21 @@ public class AccountService {
 
     private final AccountRepository accountRepository;
     private final TradeRepository tradeRepository;
+    private final MemberRepository memberRepository;
 
     public Integer getBalance(String accountNumber) {
         Account account = accountRepository.findById(accountNumber)
             .orElseThrow(() -> new NotFoundException("계좌가 없습니다"));
         return account.getBalance();
+    }
+
+    public List<BalanceDto> getBalanceList(int memberId){
+        Member member = memberRepository.findById(memberId)
+            .orElseThrow(() -> new NotFoundException("멤버가 없습니다"));
+
+        return accountRepository.findByMember(member).stream()
+            .map(account -> new BalanceDto(account.getAccount_number(), account.getBalance())).collect(Collectors.toList());
+
     }
 
     //이체 시 거래 내역 생성
@@ -70,7 +83,7 @@ public class AccountService {
                 .orElseThrow(() -> new NotFoundException("계좌가 없습니다"));
         List<Trade> trades = tradeRepository.findByAccountNumber(accountNumber);
         return trades.stream()
-                .map(trade -> new TradeResponse(trade.getId(), trade.getAmount(), trade.getReceivingAccountNumber(), trade.getName()))
+                .map(trade -> new TradeResponse(trade.getId(), trade.getAmount(), trade.getReceivingAccountNumber(), trade.getName(), trade.getCreatedAt()))
                 .collect(Collectors.toList());
     }
 }

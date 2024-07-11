@@ -30,7 +30,7 @@ const AccountView = () => {
                 </div>
                 <div className='account_title_content'>
                     <div>홍길동님의 통장</div>
-                    <div>123-1234-1234-12</div>
+                    <div>{accountNumber}</div>
                 </div>
             </div>
             <div className='account_balance'>

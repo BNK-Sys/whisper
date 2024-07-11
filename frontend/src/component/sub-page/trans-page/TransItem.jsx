@@ -1,30 +1,26 @@
-import "./TransItem.css";
 import React from 'react';
-const TransItem = (props) => {
-    function checkDeposit(value) { 
-        if(value.charAt(0) == "-") {
-            return true; //양수
-        }else {
-            console.log("d")
-            return false;
-        }
+import "./TransItem.css";
+
+const TransItem = ({ amount, receivingAccountNumber, name, time }) => {
+    // 금액이 양수인지 체크하는 함수
+    function checkDeposit(value) {
+        return value > 0; // 금액이 양수면 true, 음수면 false 반환
     }
 
     return (
         <div className="trans-item-container">
             <div className="trans-item">
-                <img src={props.img} width={35} height={35}/>
                 <div className="trans-info">
-                    <div className="trans-info-bank">{props.bank}</div>
-                    <div className="trans-info-time">{props.time}</div>
+                    <div className="trans-info-name">{name}</div>
+                    <div className="trans-info-account">{receivingAccountNumber}</div>
+                    <div className="trans-info-time">{time}</div>
                 </div>
             </div>
             <div className="trans-amount-container">
-                <div className="trans-amount" style={{ color: checkDeposit(props.amount) ? "" : "#3881E2" }}>{props.amount}원</div>
-                <div className="trans-totalamount">111,000원</div>
+                <div className="trans-amount" style={{ color: checkDeposit(amount) ? "green" : "#3881E2" }}>-{amount.toLocaleString()}원</div>
             </div>
         </div>
     );
 }
 
-export default TransItem
+export default TransItem;

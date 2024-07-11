@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import "./AccountHis.css";
 import AccountItem from "./AccountItem";
 import tossIcon from "../../../assets/tossIcon.png";
@@ -5,19 +7,47 @@ import nhIcon from "../../../assets/nhIcon.png";
 import bnkIcon from "../../../assets/bnkIcon.png";
 import add from "../../../assets/add.png";
 import rightArrow from "../../../assets/rightArrow.png";
-import React from 'react';
+
 const AccountHis = () => {
+    const [accounts, setAccounts] = useState([]); // 계좌 데이터를 저장할 state
+    const [totalAssets, setTotalAssets] = useState(0); // 총 자산을 저장할 state
+
+    useEffect(() => {
+        axios.get(`http://localhost:8080/account/1`)
+            .then(response => {
+                const { balanceList } = response.data;
+                setAccounts(balanceList);  // 응답 데이터를 state에 저장
+                // 총 자산 계산
+                const total = balanceList.reduce((acc, account) => acc + account.balance, 0);
+                setTotalAssets(total);  // 계산된 총 자산을 state에 저장
+            })
+            .catch(error => {
+                console.error("계좌 정보를 가져오는 데 실패했습니다.", error);
+            });
+    }, []);
+
+    // 계좌 정보에 따라 아이콘을 결정하는 함수
+    const getBankIcon = (accountNumber) => {
+        if (accountNumber.startsWith("112-2121")) return bnkIcon;
+        // 추가적인 은행 계좌번호 패턴에 따라 아이콘을 매칭할 수 있습니다.
+        return bnkIcon;  // 기본 아이콘
+    };
+
     return (
         <div className="account-container">
             <div>
                 <div className="total-assets">
                     <div className="total">총 자산</div>
-                    <div className="assets">123,123,123원</div>
+                    <div className="assets">{totalAssets.toLocaleString()}원</div>
                 </div>
-                <AccountItem bank={"토스뱅크"} amount={"111,110"} img={tossIcon}/>
-                <AccountItem bank={"농협은행"} amount={"123,110"} img={nhIcon}/>
-                <AccountItem bank={"부산은행"} amount={"21,110"} img={bnkIcon}/>
-                <AccountItem bank={"경남은행"} amount={"314,110"} img={bnkIcon}/>
+                {accounts.map(account => (
+                    <AccountItem
+                        key={account.accountNumber}
+                        bank={account.accountNumber} // 은행 이름 대신 계좌번호를 표시
+                        amount={account.balance.toLocaleString()} // 금액을 3자리 콤마로 구분
+                        img={getBankIcon(account.accountNumber)} // 계좌번호에 따른 은행 아이콘
+                    />
+                ))}
             </div>
             <div className="add-amount">
                 <img src={add} width={35} height={35}/>
@@ -28,4 +58,4 @@ const AccountHis = () => {
     );
 }
 
-export default AccountHis
+export default AccountHis;

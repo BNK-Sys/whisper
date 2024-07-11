@@ -21,7 +21,7 @@ const RecognitionPageWithCapture = () => {
 
   return (
     <div>
-      <TopExplain context={"송금 전 본인 인증을 진행합니다. 카메라를 응시해 주세요."} />
+      <TopExplain context={"송금 전 본인 인증을 진행합니다. \n 카메라를 응시해 주세요."} />
       <div style={{marginTop: "30px", marginBottom: "80px"}}></div>
       <img src={RecognitionImg} alt="Your Image" style={{width: "60px", maxWidth: "640px", display: "block", margin: "0 auto 20px"}} />
       <Camera ref={cameraRef} onCapture={handleCapture} />
