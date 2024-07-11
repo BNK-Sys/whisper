@@ -18,7 +18,7 @@ public class Trade extends BaseEntity {
     private int amount;  // 금액
     private String receivingAccountNumber;  // 수신 계좌번호
     private String name;  // 보낸 예금주
-
+    private int balance;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_number")
     private Account account;
@@ -28,6 +28,7 @@ public class Trade extends BaseEntity {
         this.receivingAccountNumber = receivingAccount.getAccount_number();
         this.name = receivingAccount.getMember().getName();
         this.account = myAccount;
+        this.balance = myAccount.getBalance();
         account.getTradeHistories().add(this);
     }
 }

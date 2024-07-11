@@ -72,7 +72,7 @@ public class AccountService {
         accountRepository.save(receivingAccount);
 
         //거래 내역 생성
-        Trade trade = new Trade(amount, receivingAccount, myAccount);
+        Trade trade = new Trade(amount, myAccount, receivingAccount);
         tradeRepository.save(trade);
         return 1;
 
@@ -83,7 +83,9 @@ public class AccountService {
                 .orElseThrow(() -> new NotFoundException("계좌가 없습니다"));
         List<Trade> trades = tradeRepository.findByAccountNumber(accountNumber);
         return trades.stream()
-                .map(trade -> new TradeResponse(trade.getId(), trade.getAmount(), trade.getReceivingAccountNumber(), trade.getName(), trade.getCreatedAt()))
+                .map(trade -> new TradeResponse(trade.getId(), trade.getAmount(),
+                        trade.getReceivingAccountNumber(), trade.getName(), trade.getCreatedAt(),
+                        trade.getBalance()))
                 .collect(Collectors.toList());
     }
 }

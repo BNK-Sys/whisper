@@ -11,12 +11,15 @@ public class TradeResponse {
     private String receivingAccountNumber;  // 수신 계좌번호
     private String name;  // 보낸 예금주
     private LocalDateTime date; // 날짜
+    private int balance;
 
-    public TradeResponse(int id, int amount, String receivingAccountNumber, String name, LocalDateTime date) {
+    public TradeResponse(int id, int amount, String receivingAccountNumber, String name, LocalDateTime date, int balance) {
         this.id = id;
         this.amount = amount;
         this.receivingAccountNumber = receivingAccountNumber;
         this.name = name;
         this.date = date;
+        this.balance = balance;
+
     }
 }
