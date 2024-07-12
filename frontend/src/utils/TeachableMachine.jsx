@@ -3,7 +3,7 @@ import * as tmPose from '@teachablemachine/pose';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { isRender } from '../store/Render';
 import { selectType } from '../store/Teachable';
-import Error from "../assets/error2.mp3";
+import Error from "../assets/mp3/error2.mp3";
 
 const Teachable = () => {
     const URL = "https://teachablemachine.withgoogle.com/models/6GFBNS7Sx/";
