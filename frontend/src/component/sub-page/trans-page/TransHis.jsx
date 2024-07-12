@@ -17,7 +17,11 @@ const TransHis = () => {
                 const grouped = groupTransactionsByDate(response.data);
                 setTransactions(grouped);
                 setLoading(false);
-                handleSpeechButton(); // 첫 데이터 로드 시 TTS 실행
+                
+                if (response.data && response.data.length > 0) {
+                    const recentTransaction = response.data[0]; // 첫 번째 거래가 최근 거래라고 가정
+                    handleSpeechForRecentTransaction(recentTransaction); // 최근 거래에 대한 TTS 실행
+                }
             })
             .catch(error => {
                 console.error("Error fetching transactions:", error);
@@ -36,9 +40,9 @@ const TransHis = () => {
         }, {});
     };
 
-    const handleSpeechButton = () => {
-        const voiceValue = "여기에 읽어주고 싶은 텍스트를 입력하세요.";
-        getSpeech(voiceValue);
+    const handleSpeechForRecentTransaction = (transaction) => {
+        const speechText = `거래내역 페이지입니다. 최근 거래 정보는 ${transaction.name}님으로 ${transaction.amount.toLocaleString()}원 이체 입니다. `;
+        getSpeech(speechText);
     };
 
     if (loading) return <div>Loading...</div>;
