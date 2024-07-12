@@ -9,3 +9,8 @@ export const amount = atom({
     key: 'amount',
     default: "",
 });
+
+export const bankName = atom({
+    key: 'bankName',
+    default: "",
+});
