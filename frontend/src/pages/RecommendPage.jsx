@@ -7,6 +7,8 @@ import { amount, sttText } from '../store/SpeechToText';
 import { useSetRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { pauseSpeech } from '../component/commons/tts/TTS';
+import axios from "axios";
+
 const RecommendPage = () => {
     const {
     transcript,
