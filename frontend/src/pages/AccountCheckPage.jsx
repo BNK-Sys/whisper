@@ -51,6 +51,9 @@ const AccountCheckPage = () => {
   // 각 문자를 하나씩 TTS로 읽기
   const speakCharsSequentially = async (text) => {
     const charArray = text.split('');
+
+    // 먼저 은행 이름을 읽음
+    await getSpeech(getBankName + "은행");
   
     // 각 문자에 대해 Promise 생성
     const speechPromises = charArray.map((char, index) => {
