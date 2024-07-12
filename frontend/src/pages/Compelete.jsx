@@ -12,7 +12,7 @@ const Compelete = () => {
 
   useEffect(() => {
     const audioElement = audioRef.current;
-    audioElement.loop = true; // 무한 재생을 위해 loop 속성 설정
+    audioElement.loop = false; // 무한 재생을 위해 loop 속성 설정
     console.log(isPlaying);
 
     if (isPlaying) {
