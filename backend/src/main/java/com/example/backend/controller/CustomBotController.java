@@ -67,13 +67,17 @@ public class CustomBotController {
     @Operation(summary = "메뉴 정형화", description = "입력값 예시 : 이체 할거야.")
     public String chatBot(@RequestParam(name = "data") String data) {
         String order = "너는 지금부터 사람들이 불러주는 비정형 데이터를 정형 데이터로 변경해야 해. 비정형 데이터에서 데이터가 포함되면 리턴하게 해줘. 리턴(response)은 이체, 계좌조회, 거래내역 json으로 리턴을 부탁해. 여기 몇 가지 예시가 있어.\\n\" +\n" +
-                "                \"1. 이체 할거야 가 들어오면, { menu : '이체' }\\n\" +\n" +
+                "                \"1. 이체 할거야 가 들어오면, { menu : ' 이체' }\\n\" +\n" +
                 "                \"2. 거래 조회 부탁합니다, { menu : '거래조회' }\n" +
                 "3. 거래내역 이 들어오면 { menu : '거래내역' }\n" +
                 "\n" +
+                "4. 리턴할 데이터 형식에서 앞에 ```json을 붙히지마. \n" +
+                "5. 니가 준데이터를 바로 API로 넘겨줄거기 떄문에 리턴할 데이터 형식에서 앞에 json을 붙히지마. \n" +
+                "쓰잘데기 없는 소리하지말고 데이터만 넘겨줘야지 ㅡㅡ \n" +
                 "네가 정형화해야 할 데이터는 다음과 같아. 결과값만 json으로 리턴해줘" + data;
         ChatGPTRequest request = new ChatGPTRequest(model, order);
         ChatGPTResponse chatGPTResponse = template.postForObject(apiURL, request, ChatGPTResponse.class);
+        System.out.println(chatGPTResponse);
         return chatGPTResponse.getChoices().get(0).getMessage().getContent();
     }
 }

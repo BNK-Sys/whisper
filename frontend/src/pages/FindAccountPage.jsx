@@ -29,6 +29,7 @@ const FindAccountPage = () => {
         clearTimeout(timeoutRef.current);
       }
 
+      
       timeoutRef.current = setTimeout(() => {
         // STT를 종료하고, Recoil에 텍스트 저장 후, 페이지 이동.
         SpeechRecognition.stopListening();
