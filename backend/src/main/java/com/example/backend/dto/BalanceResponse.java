@@ -6,6 +6,7 @@ import lombok.Getter;
 public class BalanceResponse {
     private int balance;
 
+
     public BalanceResponse(Integer balance) {
         this.balance = balance;
     }

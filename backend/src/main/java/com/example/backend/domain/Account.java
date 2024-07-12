@@ -22,14 +22,15 @@ public class Account {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
-
+    private String bank;
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Trade> tradeHistories = new ArrayList<>();
 
-    public Account(int balance, String account_number, Member member) {
+    public Account(int balance, String account_number, Member member, String bank) {
         this.balance = balance;
         this.account_number = account_number;
         this.member = member;
+        this.bank = bank;
         member.getAccounts().add(this);
     }
 

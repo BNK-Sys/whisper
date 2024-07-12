@@ -48,10 +48,10 @@ public class CustomBotController {
     @GetMapping("/normalization/accountNumber")    //계좌번호 정형화
     @Operation(summary = "계좌번호 정형화", description = "입력값 예시 : 부산은행 888에 4444에 2216에 99입니다.")
     public String accountNumberNormalization(@RequestParam(name = "data") String data) {
-        String order = "{ \"accountNumber\" : \"111-2222-3333-45\" }\n" +
+        String order = "{ \"accountNumber\" : \"111-2222-3333-45\", \"bank\" : \"부산\" }\n" +
                 "String 데이터를 위 형식의 JSON형태의 데이터를 응답해줘야된다. 아래의 유의 사항을 지켜서 만들어줘.\n" +
-                "1. 일일일-이이이이-삼삼삼삼-사오 이 들어오면 한글을 숫자로 유추해서 만들어야된다, { \"accountNumber\" : \"111-2222-3333-45\" }\n" +
-                "2. 숫자와 '-' 문자 제외하고 전부 없에 주라, 그 예시로 123-456-만asvs12-45 이 들어오면 { \"accountNumber\" : \"123-456-12-45\" }\n" +
+                "1. 신한은행 일일일-이이이이-삼삼삼삼-사오 이 들어오면 한글을 숫자로 유추해서 만들어야된다, { \"accountNumber\" : \"111-2222-3333-45\", \"bank\" : \"신한\" }\n" +
+                "2. 은행이름이랑 숫자와 '-' 문자 제외하고 전부 없애 주라, 그 예시로 하나 123-456-만asvs12-45 이 들어오면 { \"accountNumber\" : \"123-456-12-45\", \"bank\" : \"하나\" }\n" +
                 "3. 숫자와 '-' 문자는 절대로 바꾸면 안된다. \n" +
                 "4. 공백이 있으면 '-'를 절대로 넣지말고 그냥 붙혀서 해줘. 그 예시로 1 2 3 - 1 은 {\"accountNumber\" : \"123-1\" }" +
                 "5. 리턴할 데이터 형식에서 앞에 ```json을 붙히지마. \n" +

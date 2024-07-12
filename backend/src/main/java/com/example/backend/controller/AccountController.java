@@ -35,9 +35,9 @@ public class AccountController {
     @Operation(summary = "전체 계좌 잔액 조회", description = "memberId로 전체 잔액 조회")
     public BalanceListResponse getBalanceList(@PathVariable("memberId") Integer memberId){
         List<BalanceDto> balanceList = accountService.getBalanceList(memberId);
-
         return new BalanceListResponse(balanceList);
     }
+
     //이체
     @PostMapping("/transfer")
     @Operation(summary = "이체", description = "금액 이체 ")
