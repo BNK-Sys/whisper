@@ -9,7 +9,9 @@ import { isRender } from '../store/Render'
 import Loading from "../assets/loader.gif";
 import { selectType } from '../store/Teachable'
 import { useNavigate } from 'react-router-dom'
-import { pauseSpeech } from '../component/commons/tts/TTS'
+import { getSpeech, pauseSpeech } from '../component/commons/tts/TTS'
+
+const name = "홍길동";
 
 const TransCheckPage = () => {
   const getAmount = useRecoilValue(amount);
@@ -19,7 +21,9 @@ const TransCheckPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    pauseSpeech();
+    return () => {
+      pauseSpeech();
+    };
   }, [])
 
   useEffect(() => {
@@ -38,7 +42,7 @@ const TransCheckPage = () => {
     <div>
         <TopExplain context={"아래 금액이 맞으시다면 고개를 오른쪽으로 돌려주세요"}/>
         <div style={{marginTop: "30px", marginBottom: "80px"}}>
-          <Info content={getAmount + '원'}/>
+          <Info name={"홍길동"} content={getAmount}/>
         </div>
         {getIsRender ? <Camera/> : <Loader/>}
         <Teachable/>

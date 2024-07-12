@@ -11,6 +11,8 @@ import { selectType } from '../store/Teachable'
 import { useNavigate } from 'react-router-dom'
 import { getSpeech, pauseSpeech } from '../component/commons/tts/TTS';
 
+const name = "홍길동";
+
 const AccountCheckPage = () => {
   const [endSpeech, setEndSpeech] = useState(false);
   const getSttText = useRecoilValue(sttText);
@@ -72,9 +74,9 @@ const AccountCheckPage = () => {
 
   return (
     <div>
-        <TopExplain context={"아래 계좌번호가 맞으시다면 고개를 오른쪽으로 돌려주세요"}/>
+        <TopExplain context={"아래 계좌번호가 맞으시다면 고개를 오른쪽으로 돌려주세요"} data={"예금주 명은 " + name + "입니다. "}/>
         <div style={{marginTop: "30px", marginBottom: "80px"}}>
-          <Info content={getSttText}/>
+          <Info name={name} content={getSttText} />
         </div>
         {getIsRender ? <Camera/> : <Loader/>}
         {endSpeech ? <Teachable/> : <></>}

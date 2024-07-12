@@ -3,6 +3,7 @@ import * as tmPose from '@teachablemachine/pose';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { isRender } from '../store/Render';
 import { selectType } from '../store/Teachable';
+import Error from "../assets/error2.mp3";
 
 const Teachable = () => {
     const URL = "https://teachablemachine.withgoogle.com/models/6GFBNS7Sx/";
@@ -13,8 +14,10 @@ const Teachable = () => {
     const canvasRef = useRef(null);
     const requestRef = useRef(null);
     const isRunningRef = useRef(true);
+    const audioRef = useRef(null);
     const setIsRender = useSetRecoilState(isRender);
     const setSelectType = useSetRecoilState(selectType);
+    const [isPlaying, setIsPlaying] = useState(false);
 
     useEffect(() => {
         const loadModel = async () => {
@@ -27,6 +30,24 @@ const Teachable = () => {
 
         loadModel();
     }, []);
+
+
+    useEffect(() => {
+        const audioElement = audioRef.current;
+        audioElement.loop = true; // 무한 재생을 위해 loop 속성 설정
+        console.log(isPlaying);
+    
+        if (isPlaying) {
+          audioElement.play(); // 재생
+        } else {
+          audioElement.pause(); // 일시 정지
+        }
+    
+        // 컴포넌트가 언마운트될 때 오디오 중지
+        return () => {
+          audioElement.pause();
+        };
+      }, [isPlaying]);
 
     useEffect(() => {
         const setupWebcam = async () => {
@@ -74,16 +95,24 @@ const Teachable = () => {
     const predictAndStopSpeech = (predict1, predict2, predict3) => {
         if (predict1 === 1) {
             console.log("1번 모션");
+            setIsPlaying(false); 
         } else if (predict2 === 1) {
             console.log("2번 모션");
+            setIsPlaying(false); 
             isRunningRef.current = false; // 루프 중지 플래그 설정
             window.cancelAnimationFrame(requestRef.current); // 애니메이션 프레임 루프 중지
             setSelectType("no");
         } else if (predict3 === 1) {
             console.log("3번 모션");
+            setIsPlaying(false); 
             isRunningRef.current = false; // 루프 중지 플래그 설정
             window.cancelAnimationFrame(requestRef.current); // 애니메이션 프레임 루프 중지
             setSelectType("yes");
+        }
+        else {
+            console.log("이상함");
+            setIsPlaying(true); 
+            setSelectType("nothing");
         }
     };
 
@@ -123,6 +152,7 @@ const Teachable = () => {
         <div>
             <div style={{display:"none"}}>
                 <canvas ref={canvasRef} id="canvas" width="200" height="200"></canvas>
+                <audio ref={audioRef} src={Error} style={{display: "none"}}/>
             </div>
             {/* <div id="label-container">
                 {predictions.map((pred, index) => (

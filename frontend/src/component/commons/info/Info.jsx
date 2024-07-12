@@ -5,7 +5,7 @@ const Info = ({name, content}) => {
   return (
     <div className='info_wrapper'>
         <div className='info_name'>
-            홍길동
+            {name}
         </div>
         <div className='info_account'>
             {content}
