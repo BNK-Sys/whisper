@@ -12,7 +12,7 @@ const TransHis = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/account/trade?accountNumber=112-2121-1234-11')
+        axios.get('http://localhost:8080/account/trade?accountNumber=112-2121-3333-12')
             .then(response => {
                 const grouped = groupTransactionsByDate(response.data);
                 setTransactions(grouped);

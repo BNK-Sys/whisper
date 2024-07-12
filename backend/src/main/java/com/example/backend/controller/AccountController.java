@@ -53,4 +53,10 @@ public class AccountController {
         return accountService.getTrade(accountNumber);
     }
 
+    @GetMapping
+    @Operation(summary = "계좌 조회", description = "계좌 조회")
+    public String findName(String accountNumber) {
+        return accountService.findName(accountNumber);
+    }
+
 }

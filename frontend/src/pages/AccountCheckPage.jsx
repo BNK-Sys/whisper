@@ -10,11 +10,11 @@ import Loading from "../assets/loader.gif";
 import { selectType } from '../store/Teachable'
 import { useNavigate } from 'react-router-dom'
 import { getSpeech, pauseSpeech } from '../component/commons/tts/TTS';
-
-const name = "홍길동";
+import axios from "axios";
 
 const AccountCheckPage = () => {
   const [endSpeech, setEndSpeech] = useState(false);
+  const [name, setName] = useState('');
   const getSttText = useRecoilValue(sttText);
   const getIsRender = useRecoilValue(isRender);
   const getSelectType = useRecoilValue(selectType);
@@ -25,6 +25,17 @@ const AccountCheckPage = () => {
   const voiceValue = getSttText;
 
   useEffect(() => {
+
+    axios.get(`http://localhost:8080/account?accountNumber=` + getSttText)
+    .then(response => {
+      console.log(response);
+      console.log(response.data);
+      setName(response.data);
+
+      })
+      .catch((error) => {
+      console.error('Error fetching data: ', error);
+      })
     return () => {
       pauseSpeech();
     }
