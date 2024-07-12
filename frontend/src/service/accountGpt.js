@@ -7,7 +7,7 @@ export const getAccountNum = async (data) => {
     const response = await axiosInstance.get('/normalization/accountNumber', {params});
     console.log(response.data);
     
-    return response.data.accountNumber;
+    return response.data;
 
   } catch (error) {
     throw error;

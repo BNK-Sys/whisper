@@ -16,11 +16,14 @@ const name = "홍길동";
 const TransCheckPage = () => {
   const getAmount = useRecoilValue(amount);
   const getIsRender = useRecoilValue(isRender);
+  const setIsRender = useSetRecoilState(isRender);
   const getSelectType = useRecoilValue(selectType);
   const setSelectType = useSetRecoilState(selectType);
   const navigate = useNavigate();
 
   useEffect(() => {
+    setIsRender(false);
+    getSpeech("송금하시려고하는 금액이 " + getAmount + "원이 맞습니까?");
     return () => {
       pauseSpeech();
     };

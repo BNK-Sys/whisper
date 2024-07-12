@@ -3,7 +3,7 @@ import Camera from '../component/commons/camera/Camera'
 import Info from '../component/commons/info/Info'
 import TopExplain from '../component/commons/top-explain/TopExplain'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { sttText } from '../store/SpeechToText'
+import { bankName, sttText } from '../store/SpeechToText'
 import Teachable from '../utils/TeachableMachine'
 import { isRender } from '../store/Render'
 import Loading from "../assets/loader.gif";
@@ -18,6 +18,7 @@ const AccountCheckPage = () => {
   const getSttText = useRecoilValue(sttText);
   const getIsRender = useRecoilValue(isRender);
   const getSelectType = useRecoilValue(selectType);
+  const getBankName = useRecoilValue(bankName);
   const setSelectType = useSetRecoilState(selectType);
   const navigate = useNavigate();
 
@@ -76,7 +77,7 @@ const AccountCheckPage = () => {
     <div>
         <TopExplain context={"아래 계좌번호가 맞으시다면 고개를 오른쪽으로 돌려주세요"} data={"예금주 명은 " + name + "입니다. "}/>
         <div style={{marginTop: "30px", marginBottom: "80px"}}>
-          <Info name={name} content={getSttText} />
+          <Info name={name} content={getSttText} bankName={getBankName}/>
         </div>
         {getIsRender ? <Camera/> : <Loader/>}
         {endSpeech ? <Teachable/> : <></>}
