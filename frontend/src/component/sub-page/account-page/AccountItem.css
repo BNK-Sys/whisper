@@ -6,6 +6,10 @@
     align-items: center;
     padding-bottom: 25px;
 }
+.account-item img {
+    margin-top: 5px; /* 원하는 마진 값으로 조정 */
+}
+
 .account-item{
     display: flex;
 }

@@ -41,9 +41,15 @@ const TransHis = () => {
     };
 
     const handleSpeechForRecentTransaction = (transaction) => {
-        const speechText = `거래내역 페이지입니다. 최근 거래 정보는 ${transaction.name}님으로 ${transaction.amount.toLocaleString()}원 이체 입니다. `;
+        const date = new Date(transaction.date);
+        const dateOptions = { month: 'long', day: 'numeric' }; // "월 일" 형식
+        const dateString = date.toLocaleDateString('ko-KR', dateOptions); // 한국어 설정
+        const timeString = date.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' }); // 시간은 시:분 형식으로
+        const speechText = `거래내역 페이지입니다. 최근 거래 정보는 ${dateString} ${timeString}에 ${transaction.name}님으로 ${transaction.amount.toLocaleString()}원 이체 입니다.`;
         getSpeech(speechText);
     };
+    
+    
 
     if (loading) return <div>Loading...</div>;
 

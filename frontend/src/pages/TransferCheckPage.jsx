@@ -23,7 +23,12 @@ const TransCheckPage = () => {
 
   useEffect(() => {
     setIsRender(false);
-    getSpeech("송금하시려고하는 금액이 " + getAmount + "원이 맞습니까?");
+
+    const eventFunction = async () =>  {
+      getSpeech("송금하시려고하는 금액이 " + getAmount + "원이 맞습니까?");
+      setIsRender(true);
+    }
+    
     return () => {
       pauseSpeech();
     };
