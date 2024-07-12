@@ -19,6 +19,7 @@ import bnkgroup from './assets/bnkgroup.png';
 import LoadingAccountPage from './pages/LoadingAccountPage';
 import LoadingTransferPage from './pages/LoadingTransferPage';
 import LoadingFindTransfer from './pages/LoadingFindTransfer';
+import RecommendPage from './pages/RecommendPage';
 function App() {
   return (
     <>
@@ -49,6 +50,8 @@ function App() {
             <Route path="/account" element={<AccountPage />}></Route>
             {/* 거래내역페이지 */}
             <Route path="/trans" element={<TransPage />}></Route>
+            {/* 금융추천페이지 */}
+            <Route path="/recommend" element={<RecommendPage />}></Route>
             {/* 로딩페이지 */}
             <Route path="/loading" element={<LoadingPage />}></Route>
             {/* 계좌 로딩페이지 */}

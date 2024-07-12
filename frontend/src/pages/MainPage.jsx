@@ -5,7 +5,7 @@ import MenuItem from '../component/main-page/item/MenuItem';
 import BankItme1 from "../assets/bankItem1.png";
 import BankItme2 from "../assets/bankItem2.png";
 import CreditScore from '../component/main-page/credit-score/CreditScore';
-import Recommend from '../component/main-page/recommend/Recommend';
+import RecommendButton from '../component/main-page/button/RecommendButton';
 import FnQButton from '../component/main-page/button/FnQButton';
 import CallButton from '../component/main-page/button/CallButton';
 import { useNavigate } from 'react-router-dom';
@@ -17,6 +17,7 @@ import { sendTranscript } from '../service/menu'; // 임포트
 import { getSpeech, pauseSpeech } from '../component/commons/tts/TTS';
 
 const MainPage = () => {
+  const [endSpeech, setEndSpeech] = useState(false);
   const {
     transcript,
     listening,
@@ -58,23 +59,25 @@ const MainPage = () => {
   }
 
   {/* TTS 기능 */}
-  const voiceValue = "이체, 계좌조회, 거래내역 중 하나를 선택해주세요.";
   const [tts, setTts] = useState(false);
   useEffect(() => {
-    if(!tts) {
-      setTts(true);
-      getSpeech(voiceValue);
-      window.speechSynthesis.getVoices();
-    }
-  }, [])
+    const voiceValue = "이체, 계좌조회, 거래내역 중 하나를 말씀해주세요.";
+      const utterance = new SpeechSynthesisUtterance(voiceValue);
+      utterance.onend = () => {
+        console.log("TTS 완료, 음성 인식 시작");
+        SpeechRecognition.startListening({ continuous: true });
+      };
+      window.speechSynthesis.speak(utterance);
+      // setTts(true);
+  }, []);
   return (
     <div>
       {/* <button onClick={handlePauseButton}>tts 멈춤</button> */}
       {/* <p>마이크: {listening ? '켜짐' : '꺼짐'}</p> */}
       {/* <button onClick={() => SpeechRecognition.startListening({ continuous: true })}>시작</button>
       <button onClick={SpeechRecognition.stopListening}>중지</button>
-      <button onClick={resetTranscript}>리셋</button> */}
-      {transcript}
+      <button onClick={resetTranscript}>리셋</button>
+      {transcript} */}
       {/* <ModeSelect /> */}
       <AccountView />
       <div style={{ display: "flex", flexDirection: "row", width: "80%", margin: "15px auto" }}>
@@ -82,7 +85,7 @@ const MainPage = () => {
         <div style={{ width: "10px" }} />
         <MenuItem title={"거래내역"} img={BankItme2} />
       </div>
-      <Recommend />
+      <RecommendButton />
       <CreditScore name="홍길동" score={97} rank={3} grade="2등급" />
       {/* <FnQButton /> */}
       <CallButton />
