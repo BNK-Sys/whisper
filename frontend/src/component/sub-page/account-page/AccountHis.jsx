@@ -20,6 +20,11 @@ const AccountHis = () => {
                 // 총 자산 계산
                 const total = balanceList.reduce((acc, account) => acc + account.balance, 0);
                 setTotalAssets(total);  // 계산된 총 자산을 state에 저장
+                speak(`계좌조회 페이지 입니다. 총 자산은 ${total.toLocaleString()}원입니다.`);
+                balanceList.forEach(account => {
+                    const spacedNumber = account.accountNumber.split('').join(' '); // 계좌번호 각 숫자 사이에 공백 추가
+                    speak(`부산은행 계좌, 계좌번호 ${spacedNumber}, 잔액은 ${account.balance.toLocaleString()}원입니다.`);
+                });
             })
             .catch(error => {
                 console.error("계좌 정보를 가져오는 데 실패했습니다.", error);
@@ -33,6 +38,11 @@ const AccountHis = () => {
         return bnkIcon;  // 기본 아이콘
     };
 
+    const speak = (text) => {
+        const utterance = new SpeechSynthesisUtterance(text);
+        window.speechSynthesis.speak(utterance);
+    };
+
     return (
         <div className="account-container">
             <div>
@@ -44,6 +54,7 @@ const AccountHis = () => {
                     <AccountItem
                         key={account.accountNumber}
                         bank={account.accountNumber} // 은행 이름 대신 계좌번호를 표시
+                        accountNumber={account.accountNumber}
                         amount={account.balance.toLocaleString()} // 금액을 3자리 콤마로 구분
                         img={getBankIcon(account.accountNumber)} // 계좌번호에 따른 은행 아이콘
                     />

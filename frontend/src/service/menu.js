@@ -13,10 +13,10 @@ export const sendTranscript = async (transcript, navigate) => {
         navigate('/find/account');
         break;
       case '계좌조회':
-        navigate('/account-view');
+        navigate('/account');
         break;
       case '거래내역':
-        navigate('/transaction-history');
+        navigate('/trans');
         break;
       default:
         console.log('Unknown menu:', menu);
