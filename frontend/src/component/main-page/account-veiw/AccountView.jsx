@@ -26,7 +26,7 @@ const AccountView = () => {
         <div className='account_view'>
             <div className='account_title'>
                 <div className='account_title_logo'>
-                    <img src={BnkLogo} width={108} height={59}/>
+                    <img src={BnkLogo} height={59}/>
                 </div>
                 <div className='account_title_content'>
                     <div>홍길동님의 통장</div>
