@@ -7,6 +7,7 @@ export const sendTranscript = async (transcript, navigate) => {
       params: { data: transcript }
     });
     const { menu } = response.data;
+    console.log(menu);
     switch (menu) {
       case '이체':
         navigate('/find/account');

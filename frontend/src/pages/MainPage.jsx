@@ -17,6 +17,7 @@ import { sendTranscript } from '../service/menu'; // 임포트
 import { getSpeech, pauseSpeech } from '../component/commons/tts/TTS';
 
 const MainPage = () => {
+  const [endSpeech, setEndSpeech] = useState(false);
   const {
     transcript,
     listening,
@@ -58,7 +59,7 @@ const MainPage = () => {
   }
 
   {/* TTS 기능 */}
-  const voiceValue = "이체, 계좌조회, 거래내역 중 하나를 선택해주세요.";
+  const voiceValue = "이체, 계좌조회, 거래내역 중 하나를 말씀해주세요.";
   const [tts, setTts] = useState(false);
   useEffect(() => {
     if(!tts) {
@@ -71,9 +72,9 @@ const MainPage = () => {
     <div>
       {/* <button onClick={handlePauseButton}>tts 멈춤</button> */}
       {/* <p>마이크: {listening ? '켜짐' : '꺼짐'}</p> */}
-      {/* <button onClick={() => SpeechRecognition.startListening({ continuous: true })}>시작</button>
+      <button onClick={() => SpeechRecognition.startListening({ continuous: true })}>시작</button>
       <button onClick={SpeechRecognition.stopListening}>중지</button>
-      <button onClick={resetTranscript}>리셋</button> */}
+      <button onClick={resetTranscript}>리셋</button>
       {transcript}
       {/* <ModeSelect /> */}
       <AccountView />
