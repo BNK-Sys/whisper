@@ -10,7 +10,7 @@ import { pauseSpeech } from '../component/commons/tts/TTS';
 
 const FindAccountPage = () => {
   const {
-    transcript,
+    transcript, 
     listening,
     resetTranscript,
     browserSupportsSpeechRecognition
@@ -42,6 +42,7 @@ const FindAccountPage = () => {
   useEffect(() => {
     // 마운트 시 마이크 시작
     setSttText("");
+    resetTranscript();
     SpeechRecognition.startListening({ continuous: true });
 
     // 언마운트 시 마이크 중지

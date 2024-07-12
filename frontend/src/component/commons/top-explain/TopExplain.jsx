@@ -12,7 +12,13 @@ const TopExplain = ({ context, data }) => {
   useEffect(() => {
     if (!tts) {
       setTts(true);
-      getSpeech(data + voiceValue);
+      if(data == undefined) {
+        getSpeech(voiceValue);
+      }
+      else {
+        getSpeech(data + voiceValue);
+      }
+      
       window.speechSynthesis.getVoices();
     }
   }, []);
