@@ -57,7 +57,6 @@ const Compelete = () => {
       <div style={{ width: "80%", margin: "280px auto" }}>
         <audio ref={audioRef} src={Success} style={{ display: "none" }} />
         <CompeleteContent />
-        <button onClick={() => {setIsPlaying(true)}}/>
       </div>
     </div>
   );
