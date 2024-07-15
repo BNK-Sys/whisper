@@ -4,6 +4,7 @@ package com.example.backend.service;
 import com.example.backend.domain.Account;
 import com.example.backend.domain.Member;
 import com.example.backend.domain.Trade;
+import com.example.backend.dto.AccountDto;
 import com.example.backend.dto.BalanceDto;
 import com.example.backend.dto.TradeResponse;
 import com.example.backend.dto.TransferRequest;
@@ -33,10 +34,12 @@ public class AccountService {
     private final TradeRepository tradeRepository;
     private final MemberRepository memberRepository;
 
-    public Integer getBalance(String accountNumber) {
+    public AccountDto getBalance(String accountNumber) {
         Account account = accountRepository.findById(accountNumber)
             .orElseThrow(() -> new NotFoundException("계좌가 없습니다"));
-        return account.getBalance();
+
+        AccountDto accountDto = new AccountDto(account.getBalance(), account.getMember().getName());
+        return accountDto;
     }
 
     public String findName(String accountNumber) {

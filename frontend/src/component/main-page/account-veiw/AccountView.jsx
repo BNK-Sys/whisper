@@ -7,6 +7,7 @@ import axios from 'axios';
 const AccountView = () => {
     const navigate = useNavigate();
     const [balance, setBalance] = useState('Loading...'); // 초기값을 'Loading...'로 설정
+    const [name, setName] = useState('Loading...'); // 초기값을 'Loading...'로 설정
     const accountNumber = "112-2121-3333-12";
 
     useEffect(() => {
@@ -14,7 +15,9 @@ const AccountView = () => {
             .then(response => {
                 // 성공적으로 데이터를 받아온 경우, 숫자를 천 단위로 구분하여 포맷팅
                 const formattedBalance = response.data.balance.toLocaleString('ko-KR');
+                const name = response.data.name;
                 setBalance(formattedBalance + ' 원'); // '원' 단위를 추가하여 상태 업데이트
+                setName(name);
             })
             .catch(error => {
                 console.error('Error fetching the account balance:', error);
@@ -29,7 +32,7 @@ const AccountView = () => {
                     <img src={BnkLogo} height={59}/>
                 </div>
                 <div className='account_title_content'>
-                    <div>홍길동님의 통장</div>
+                    <div>{name} 님의 통장</div>
                     <div>{accountNumber}</div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 package com.example.backend.controller;
 
+import com.example.backend.dto.AccountDto;
 import com.example.backend.dto.BalanceDto;
 import com.example.backend.dto.BalanceListResponse;
 import com.example.backend.dto.BalanceResponse;
@@ -26,8 +27,8 @@ public class AccountController {
     @GetMapping("/balance")
     @Operation(summary = "잔액 조회", description = "accountNumber로 잔액 조회")
     public BalanceResponse getBalance(@RequestParam String accountNumber) {
-        Integer balance = accountService.getBalance(accountNumber);
-        return new BalanceResponse(balance);
+        AccountDto balance = accountService.getBalance(accountNumber);
+        return new BalanceResponse(balance.getBalance(), balance.getName());
     }
 
     // 전체 자산 조회
