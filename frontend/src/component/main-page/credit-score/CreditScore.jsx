@@ -8,7 +8,7 @@ const CreditScore = ({ name, score, rank, grade }) => {
   return (
     <div className="credit_score_main">
       <div className='credit_score_title'>
-        <span style={{fontWeight:"bold"}}>홍길동님</span><span>의 신용점수</span>
+        <span style={{fontWeight:"bold"}}>윤태호님</span><span>의 신용점수</span>
       </div>
 
        <div className='credit_score_content'>
