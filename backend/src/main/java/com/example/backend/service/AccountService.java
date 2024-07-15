@@ -61,7 +61,7 @@ public class AccountService {
     //이체 시 거래 내역 생성
     public Integer transfer(TransferRequest transferRequest) {
         // 내 계좌 체크
-//        System.out.println(transferRequest.getAccountNumber());
+
         Account myAccount = accountRepository.findById(transferRequest.getAccountNumber())
                 .orElseThrow(() -> new NotFoundException("계좌가 없습니다"));
 
@@ -89,6 +89,7 @@ public class AccountService {
     }
 
     public List<TradeResponse> getTrade(String accountNumber) {
+
         Account myAccount = accountRepository.findById(accountNumber)
                 .orElseThrow(() -> new NotFoundException("계좌가 없습니다"));
         List<Trade> trades = tradeRepository.findByAccountNumber(accountNumber);
