@@ -7,28 +7,43 @@ import nhIcon from "../../../assets/nhIcon.png";
 import bnkIcon from "../../../assets/bnkIcon.png";
 import add from "../../../assets/add.png";
 import rightArrow from "../../../assets/rightArrow.png";
+import { useNavigate } from 'react-router-dom';
+import { getSpeech } from '../../commons/tts/TTS';
 
 const AccountHis = () => {
     const [accounts, setAccounts] = useState([]); // 계좌 데이터를 저장할 state
     const [totalAssets, setTotalAssets] = useState(0); // 총 자산을 저장할 state
+    const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/account/1`)
-            .then(response => {
+        const getAccount = async() => {
+            await axios.get(`http://localhost:8080/account/1`)
+            .then(async response => {
                 const { balanceList } = response.data;
                 setAccounts(balanceList);  // 응답 데이터를 state에 저장
                 // 총 자산 계산
                 const total = balanceList.reduce((acc, account) => acc + account.balance, 0);
                 setTotalAssets(total);  // 계산된 총 자산을 state에 저장
-                speak(`계좌조회 페이지 입니다. 총 자산은 ${total.toLocaleString()}원입니다.`);
+                await speak(`계좌조회 페이지 입니다. 총 자산은 ${total.toLocaleString()}원입니다.`);
+
+                let string = "";
                 balanceList.forEach(account => {
                     const spacedNumber = account.accountNumber.split('').join(' '); // 계좌번호 각 숫자 사이에 공백 추가
-                    speak(`부산은행 계좌, 계좌번호 ${spacedNumber}, 잔액은 ${account.balance.toLocaleString()}원입니다.`);
+                    string += `부산은행 계좌, 계좌번호 ${account.accountNumber}, 잔액은 ${account.balance.toLocaleString()}원입니다.\n`;
                 });
+                
+               await getSpeech(string);
+
+                setTimeout(() => {
+                    navigate("/")
+                }, 2000);
             })
             .catch(error => {
                 console.error("계좌 정보를 가져오는 데 실패했습니다.", error);
             });
+        }
+
+        getAccount();
     }, []);
 
     // 계좌 정보에 따라 아이콘을 결정하는 함수
@@ -38,9 +53,8 @@ const AccountHis = () => {
         return bnkIcon;  // 기본 아이콘
     };
 
-    const speak = (text) => {
-        const utterance = new SpeechSynthesisUtterance(text);
-        window.speechSynthesis.speak(utterance);
+    const speak = async (text) => {
+        await getSpeech(text);
     };
 
     return (
