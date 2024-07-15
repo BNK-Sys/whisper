@@ -61,7 +61,7 @@ const MainPage = () => {
   {/* TTS 기능 */}
   const [tts, setTts] = useState(false);
   useEffect(() => {
-    const voiceValue = "이체, 계좌조회, 거래내역 중 하나를 말씀해주세요.";
+    const voiceValue = "이체, 계좌조회, 거래내역, 금융상품추천 중 하나를 말씀해주세요.";
       const utterance = new SpeechSynthesisUtterance(voiceValue);
       utterance.onend = () => {
         console.log("TTS 완료, 음성 인식 시작");

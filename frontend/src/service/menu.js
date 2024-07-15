@@ -18,6 +18,8 @@ export const sendTranscript = async (transcript, navigate) => {
       case '거래내역':
         navigate('/trans');
         break;
+      case '금융상품추천':
+        navigate('/recommend')
       default:
         console.log('Unknown menu:', menu);
         break;
