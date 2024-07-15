@@ -39,6 +39,16 @@ public class AccountService {
         return account.getBalance();
     }
 
+    public String findName(String accountNumber) {
+
+        // 계좌번호로 계좌를 조회
+        Account account = accountRepository.findById(accountNumber)
+            .orElseThrow(() -> new NotFoundException("계좌가 없습니다"));
+
+        // 계좌에서 member를 추출하고 이름 추출
+        return account.getMember().getName();
+    }
+
     public List<BalanceDto> getBalanceList(int memberId){
         Member member = memberRepository.findById(memberId)
             .orElseThrow(() -> new NotFoundException("멤버가 없습니다"));

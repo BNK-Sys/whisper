@@ -13,19 +13,17 @@
 
 .account_title {
     display: flex;
-    
     flex-direction: row;
-    width: 100%;
+    width: 88%;
     height: 30%;
     max-height: 59px;
     margin-top: 4%;
     margin-bottom: 8px;
+    margin-left: 5%;
 }
 
 .account_title_logo {
-    display: flex;
-    flex: 0.22;
-    min-width: 83px;
+    margin-right: 10px;
 }
 
 .account_title_content {

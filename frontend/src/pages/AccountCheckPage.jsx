@@ -10,11 +10,11 @@ import Loading from "../assets/loader.gif";
 import { selectType } from '../store/Teachable'
 import { useNavigate } from 'react-router-dom'
 import { getSpeech, pauseSpeech } from '../component/commons/tts/TTS';
-
-const name = "홍길동";
+import axios from "axios";
 
 const AccountCheckPage = () => {
   const [endSpeech, setEndSpeech] = useState(false);
+  const [name, setName] = useState('');
   const getSttText = useRecoilValue(sttText);
   const getIsRender = useRecoilValue(isRender);
   const getSelectType = useRecoilValue(selectType);
@@ -25,6 +25,17 @@ const AccountCheckPage = () => {
   const voiceValue = getSttText;
 
   useEffect(() => {
+
+    axios.get(`http://localhost:8080/account?accountNumber=` + getSttText)
+    .then(response => {
+      console.log(response);
+      console.log(response.data);
+      setName(response.data);
+
+      })
+      .catch((error) => {
+      console.error('Error fetching data: ', error);
+      })
     return () => {
       pauseSpeech();
     }
@@ -51,6 +62,9 @@ const AccountCheckPage = () => {
   // 각 문자를 하나씩 TTS로 읽기
   const speakCharsSequentially = async (text) => {
     const charArray = text.split('');
+
+    // 먼저 은행 이름을 읽음
+    await getSpeech(getBankName + "은행");
   
     // 각 문자에 대해 Promise 생성
     const speechPromises = charArray.map((char, index) => {

@@ -5,7 +5,7 @@ import MenuItem from '../component/main-page/item/MenuItem';
 import BankItme1 from "../assets/bankItem1.png";
 import BankItme2 from "../assets/bankItem2.png";
 import CreditScore from '../component/main-page/credit-score/CreditScore';
-import Recommend from '../component/main-page/recommend/Recommend';
+import RecommendButton from '../component/main-page/button/RecommendButton';
 import FnQButton from '../component/main-page/button/FnQButton';
 import CallButton from '../component/main-page/button/CallButton';
 import { useNavigate } from 'react-router-dom';
@@ -85,7 +85,7 @@ const MainPage = () => {
         <div style={{ width: "10px" }} />
         <MenuItem title={"거래내역"} img={BankItme2} />
       </div>
-      <Recommend />
+      <RecommendButton />
       <CreditScore name="홍길동" score={97} rank={3} grade="2등급" />
       {/* <FnQButton /> */}
       <CallButton />
