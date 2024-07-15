@@ -62,7 +62,7 @@ const TransCheckPage = () => {
     }
   }, [getSelectType, setSelectType, navigate]);
 
-  const contextMessage = `${name}님 에게, ${getAmount} 원을 송금합니다. 금액이 맞으시다면 고개를 오른쪽으로 돌려주세요`
+  const contextMessage = `윤태호님 에게, ${getAmount} 원을 송금합니다. 금액이 맞으시다면 고개를 오른쪽으로 돌려주세요`
 
   return (
     <div>

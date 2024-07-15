@@ -89,7 +89,7 @@ const AccountCheckPage = () => {
 
   return (
     <div>
-        <TopExplain context={"아래 계좌번호가 맞으시다면 고개를 오른쪽으로 돌려주세요"} data={"예금주 명은 " + name + "입니다. "}/>
+        <TopExplain context={"아래 계좌번호가 맞으시다면 고개를 오른쪽으로 돌려주세요"} data={"예금주 명은 윤태호 입니다. "}/>
         <div style={{marginTop: "30px", marginBottom: "80px"}}>
           <Info name={name} content={getSttText} bankName={getBankName}/>
         </div>

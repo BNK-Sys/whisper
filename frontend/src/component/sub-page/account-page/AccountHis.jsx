@@ -26,17 +26,21 @@ const AccountHis = () => {
                 setTotalAssets(total);  // 계산된 총 자산을 state에 저장
                 await speak(`계좌조회 페이지 입니다. 총 자산은 ${total.toLocaleString()}원입니다.`);
 
-                let string = "";
+                let str_list = [];
                 balanceList.forEach(account => {
-                    const spacedNumber = account.accountNumber.split('').join(' '); // 계좌번호 각 숫자 사이에 공백 추가
-                    string += `부산은행 계좌, 계좌번호 ${account.accountNumber}, 잔액은 ${account.balance.toLocaleString()}원입니다.\n`;
+                    const spacedNumber = account.accountNumber.split('').join(' \n'); // 계좌번호 각 숫자 사이에 공백 추가
+                    str_list.push(`부산은행 계좌, 계좌번호 ${spacedNumber}, 잔액은 ${account.balance.toLocaleString()}원입니다.\n`);
                 });
-                
-               await getSpeech(string);
+
+
+                for(let i = 0; i < str_list.length; i++) {
+                    await getSpeech(str_list[i]);
+                }
 
                 setTimeout(() => {
                     navigate("/")
                 }, 2000);
+
             })
             .catch(error => {
                 console.error("계좌 정보를 가져오는 데 실패했습니다.", error);
