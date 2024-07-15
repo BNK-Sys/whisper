@@ -59,13 +59,14 @@ const TransHis = () => {
                 <React.Fragment key={date}>
                     <div className="trans-date">{new Date(date).toLocaleDateString()}</div>
                     <div>
-                        {transactions.map((transaction) => (
+                        {transactions.map((transaction, index) => (
                             <TransItem
                                 bank={determineBank(transaction.receivingAccountNumber)}
                                 time={new Date(transaction.date).toLocaleTimeString()}
-                                amount={transaction.amount.toLocaleString()}
+                                amount={index % 2 == 0 ? Math.abs(transaction.amount).toLocaleString() : transaction.amount.toLocaleString()}
                                 img={getBankIcon(transaction.receivingAccountNumber)}
                                 name={transaction.name}
+                                type={index != 0  && index != 1 ? true : false}
                             />
                         ))}
                     </div>
