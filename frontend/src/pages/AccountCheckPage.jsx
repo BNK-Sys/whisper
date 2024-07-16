@@ -51,11 +51,17 @@ const AccountCheckPage = () => {
     console.log(getSelectType);
     if(getSelectType === "yes") {
       setSelectType("none");
-      navigate("/find/transfer");
+
+      setTimeout(() => {
+        navigate("/find/transfer");
+      }, 2000)
     }
     else if(getSelectType === "no") {
       setSelectType("none");
-      navigate("/find/account");
+
+      setTimeout(() => {
+        navigate("/find/account");
+      }, 2000)
     }
   }, [getSelectType, setSelectType, navigate]);
 
