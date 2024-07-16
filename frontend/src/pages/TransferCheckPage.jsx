@@ -55,10 +55,16 @@ const TransCheckPage = () => {
     console.log(getSelectType);
     if (getSelectType === "yes") {
       setSelectType("none");
-      navigate("/loading/find/transfer");
+
+      setTimeout(() => {
+        navigate("/loading/find/transfer");
+      }, 2000)
     } else if (getSelectType === "no") {
       setSelectType("none");
-      navigate("/find/transfer");
+
+      setTimeout(() => {
+        navigate("/find/transfer");
+      }, 2000)
     }
   }, [getSelectType, setSelectType, navigate]);
 
