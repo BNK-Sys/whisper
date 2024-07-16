@@ -63,7 +63,6 @@ const MainPage = () => {
   useEffect(() => {
     const voiceValue = "이체, 계좌조회, 거래내역, 금융상품추천 중 하나를 말씀해주세요.";
       const utterance = new SpeechSynthesisUtterance(voiceValue);
-      utterance.volume = 0.3;
       utterance.onend = () => {
         console.log("TTS 완료, 음성 인식 시작");
         SpeechRecognition.startListening({ continuous: true });

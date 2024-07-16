@@ -29,7 +29,7 @@ const AccountHis = () => {
                 let str_list = [];
                 balanceList.forEach(account => {
                     const spacedNumber = account.accountNumber.split('').join(' \n'); // 계좌번호 각 숫자 사이에 공백 추가
-                    str_list.push(`부산은행 계좌, 계좌번호 ${spacedNumber}, 잔액은 ${account.balance.toLocaleString()}원입니다.\n`);
+                    str_list.push(`부산은행 계좌, 계좌번호, ${spacedNumber}, 잔액은 ${account.balance.toLocaleString()}원입니다.\n`);
                 });
 
 
